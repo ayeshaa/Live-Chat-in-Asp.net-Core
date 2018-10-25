@@ -1,0 +1,89 @@
+﻿@page
+@model ConflictRenewal.Pages.Conflicts.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Conflict</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Conflict.ConflictDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Conflict.ConflictDate)
+        </dd>
+        <dt>
+            @*Html.DisplayNameFor(model => model.Conflict.Question1)*@
+            1. Describe the situation that triggered your strong emotional response.
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Conflict.Question1)
+        </dd>
+        <dt>
+            @*Html.DisplayNameFor(model => model.Conflict.Question2)*@
+            2. Feel the full intensity of your emotional experience and journal it here.
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Conflict.Question2)
+        </dd>
+        <dt>
+            @*Html.DisplayNameFor(model => model.Conflict.Question3)*@
+            3. Create a healthy conflict statement. I feel _________ when _________.
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Conflict.Question3)
+        </dd>
+        <dt>
+            @*Html.DisplayNameFor(model => model.Conflict.Question4)*@
+            4. Create a desired outcome statement that will guide you toward permanently resolving your conflict. I want __________.
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Conflict.Question4)
+        </dd>
+        <dt>
+            @*Html.DisplayNameFor(model => model.Conflict.Question5)*@
+            5. Create and rehearse a solution that fully resolves your conflict.
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Conflict.Question5)
+        </dd>
+        <dt>
+            @*Html.DisplayNameFor(model => model.Conflict.Question6)*@
+            6. What steps are you taking to ensure a permanent solution to your conflict?
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Conflict.Question6)
+        </dd>
+        <dd>
+            <a asp-page="./Edit" asp-route-id="@Model.Conflict.Id" class="btn btn-light">Edit</a>
+            <a asp-page="./Delete" asp-route-id="@Model.Conflict.Id" class="btn btn-light">Delete</a>
+        </dd>
+        <dd>
+            <table class="table">
+                <tr>
+                    <th colspan="2">Journal entries</th>
+                    @*<th>Entry</th>*@
+                </tr>
+                @foreach (var item in Model.Conflict.Journals)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.JournalDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.JournalContent)
+                        </td>
+                    </tr>
+                }
+            </table>
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>

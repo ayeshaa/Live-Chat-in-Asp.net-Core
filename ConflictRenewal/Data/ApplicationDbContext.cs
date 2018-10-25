@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using ConflictRenewal.Models;
 
 namespace ConflictRenewal.Data
 {
@@ -12,5 +13,6 @@ namespace ConflictRenewal.Data
             : base(options)
         {
         }
+        public DbSet<ConflictRenewal.Models.Conflict> Conflict { get; set; }
     }
 }
