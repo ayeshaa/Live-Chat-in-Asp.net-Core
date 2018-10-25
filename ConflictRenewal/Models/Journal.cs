@@ -10,7 +10,7 @@ namespace ConflictRenewal.Models
     {
         public int Id { get; set; }
 
-        [Display(Name = "Conflict Date")]
+        [Display(Name = "Journal Date")]
         [DataType(DataType.Date)]
         public DateTime JournalDate { get; set; }
 

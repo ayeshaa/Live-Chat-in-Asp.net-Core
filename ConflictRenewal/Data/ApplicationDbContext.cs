@@ -14,5 +14,6 @@ namespace ConflictRenewal.Data
         {
         }
         public DbSet<ConflictRenewal.Models.Conflict> Conflict { get; set; }
+        public DbSet<ConflictRenewal.Models.Journal> Journal { get; set; }
     }
 }
