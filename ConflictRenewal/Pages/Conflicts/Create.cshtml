@@ -4,18 +4,25 @@
 @{
     ViewData["Title"] = "Create";
 }
+<style>
+    .buttopading {
+        padding-top: 8px;
+    }
 
+    .checkboxpadding {
+        padding-bottom: 16px;
+    }
+</style>
 <h2>Create</h2>
 
 <h4>Conflict</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-6">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <!-- DATE -->
-
             <div class="form-group">
                 <label asp-for="Conflict.ConflictDate" class="control-label"></label>
                 <input asp-for="Conflict.ConflictDate" class="form-control" />
@@ -26,9 +33,9 @@
 
             <div class="form-group">
                 <label asp-for="Conflict.Question1" class="control-label">1. Describe the situation that triggered your strong emotional response.</label>
-                <textarea asp-for="Conflict.Question1" class="form-control"></textarea>
+                <textarea asp-for="Conflict.Question1" class="form-control" rows="6"></textarea>
                 <span asp-validation-for="Conflict.Question1" class="text-danger"></span>
-                <p>
+                <p class="buttopading">
                     <a class="btn btn-light" data-toggle="collapse" href="#collapseHelpQ1" role="button" aria-expanded="false" aria-controls="collapseHelpQ1">
                         Help
                     </a>
@@ -38,15 +45,15 @@
                 </p>
                 <div class="collapse" id="collapseHelpQ1">
                     <div class="card card-body">
-                        <div class="form-check">
+                        <div class="form-check checkboxpadding">
                             <input type="checkbox" class="form-check-input" id="HelpQ1_1">
                             <label class="form-check-label" for="HelpQ1_1">It's best to begin with a particular incident or memory as compared to a general description of a conflict.</label>
                         </div>
-                        <div class="form-check">
+                        <div class="form-check checkboxpadding">
                             <input type="checkbox" class="form-check-input" id="HelpQ1_2">
                             <label class="form-check-label" for="HelpQ1_2">Include all important people, places and events.</label>
                         </div>
-                        <div class="form-check">
+                        <div class="form-check checkboxpadding">
                             <input type="checkbox" class="form-check-input" id="HelpQ1_3">
                             <label class="form-check-label" for="HelpQ1_3">Be sure to include a short description of your emotional reaction.</label>
                         </div>
@@ -58,11 +65,11 @@
                 </div>
                 <div class="collapse" id="collapseExamplesQ1">
                     <div class="card card-body">
-                        <div class="form-check">
+                        <div class="form-check checkboxpadding">
                             <input type="checkbox" class="form-check-input" id="ExamplesQ1_1">
                             <label class="form-check-label" for="ExamplesQ1_1">Scenario 1 - 'The Toast': 'My brother was my best man at our wedding and he said some things in his toast that I really didn't like.'</label>
                         </div>
-                        <div class="form-check">
+                        <div class="form-check checkboxpadding">
                             <input type="checkbox" class="form-check-input" id="ExamplesQ1_2">
                             <label class="form-check-label" for="ExamplesQ1_2">Scenario 2 - 'Unfaithful': 'I found out from my partner's sister that my partner has been unfaithful. I am so angry.'</label>
                         </div>
@@ -79,10 +86,10 @@
 
             <div class="form-group">
                 <label asp-for="Conflict.Question2" class="control-label">2. Feel the full intensity of your emotional experience and journal it here.</label>
-                <textarea asp-for="Conflict.Question2" class="form-control"></textarea>
+                <textarea asp-for="Conflict.Question2" class="form-control" rows="6"></textarea>
                 <span asp-validation-for="Conflict.Question2" class="text-danger"></span>
 
-                <p>
+                <p class="buttopading">
                     <a class="btn btn-light" data-toggle="collapse" href="#collapseHelpQ2" role="button" aria-expanded="false" aria-controls="collapseHelpQ2">
                         Help
                     </a>
@@ -92,15 +99,15 @@
                 </p>
                 <div class="collapse" id="collapseHelpQ2">
                     <div class="card card-body">
-                        <div class="form-check">
+                        <div class="form-check checkboxpadding">
                             <input type="checkbox" class="form-check-input" id="HelpQ2_1">
                             <label class="form-check-label" for="HelpQ2_1">I can feel my core emotion as I mentally reference my conflict.</label>
                         </div>
-                        <div class="form-check">
+                        <div class="form-check checkboxpadding">
                             <input type="checkbox" class="form-check-input" id="HelpQ2_2">
                             <label class="form-check-label" for="HelpQ2_2">I understand that I need to deeply feel my core emotion as compared to repressing it.</label>
                         </div>
-                        <div class="form-check">
+                        <div class="form-check checkboxpadding">
                             <input type="checkbox" class="form-check-input" id="HelpQ2_3">
                             <label class="form-check-label" for="HelpQ2_3">I have experienced my core emotion long enough to feel a cathartic release.</label>
                         </div>
@@ -112,11 +119,11 @@
                 </div>
                 <div class="collapse" id="collapseExamplesQ2">
                     <div class="card card-body">
-                        <div class="form-check">
+                        <div class="form-check checkboxpadding">
                             <input type="checkbox" class="form-check-input" id="ExamplesQ2_1">
                             <label class="form-check-label" for="ExamplesQ2_1">Scenario 1 - 'The Toast': 'As I begin to focus on my brother's speech I am feeling so angry. It's so strong I can feel it in my chest and shoulders. I want to slap him in the face.'</label>
                         </div>
-                        <div class="form-check">
+                        <div class="form-check checkboxpadding">
                             <input type="checkbox" class="form-check-input" id="ExamplesQ2_2">
                             <label class="form-check-label" for="ExamplesQ2_2">Scenario 2 - 'Unfaithful': 'I want to scream at my partner and share how angry I am feeling. I feel like I'm going to explode.'</label>
                         </div>
@@ -133,10 +140,10 @@
 
             <div class="form-group">
                 <label asp-for="Conflict.Question3" class="control-label">3. Create a healthy conflict statement. I feel _________ when _________.</label>
-                <textarea asp-for="Conflict.Question3" class="form-control"></textarea>
+                <textarea asp-for="Conflict.Question3" class="form-control" rows="6"></textarea>
                 <span asp-validation-for="Conflict.Question3" class="text-danger"></span>
 
-                <p>
+                <p class="buttopading">
                     <a class="btn btn-light" data-toggle="collapse" href="#collapseHelpQ3" role="button" aria-expanded="false" aria-controls="collapseHelpQ3">
                         Help
                     </a>
@@ -146,23 +153,23 @@
                 </p>
                 <div class="collapse" id="collapseHelpQ3">
                     <div class="card card-body">
-                        <div class="form-check">
+                        <div class="form-check checkboxpadding">
                             <input type="checkbox" class="form-check-input" id="HelpQ3_1">
                             <label class="form-check-label" for="HelpQ3_1">My healthy conflict statement helps me contain my initial emotional reactivity.</label>
                         </div>
-                        <div class="form-check">
+                        <div class="form-check checkboxpadding">
                             <input type="checkbox" class="form-check-input" id="HelpQ3_2">
                             <label class="form-check-label" for="HelpQ3_2">Use only core emotions (Sadness, Anger, Fear, Disgust, Joy) in the first blank space.</label>
                         </div>
-                        <div class="form-check">
+                        <div class="form-check checkboxpadding">
                             <input type="checkbox" class="form-check-input" id="HelpQ3_3">
                             <label class="form-check-label" for="HelpQ3_3">My conditional statement (second blank space) articulates my personal inability to manage my conflict as compared to blaming others for my internal reaction.</label>
                         </div>
-                        <div class="form-check">
+                        <div class="form-check checkboxpadding">
                             <input type="checkbox" class="form-check-input" id="HelpQ3_4">
                             <label class="form-check-label" for="HelpQ3_4">My conditional statement (second blank space) expresses a desire to fully own my internal experience of my conflict.</label>
                         </div>
-                        <div class="form-check">
+                        <div class="form-check checkboxpadding">
                             <input type="checkbox" class="form-check-input" id="HelpQ3_5">
                             <label class="form-check-label" for="HelpQ3_5">My conditional statement is designed to give me full control over my part in the current conflict.</label>
                         </div>
@@ -174,11 +181,11 @@
                 </div>
                 <div class="collapse" id="collapseExamplesQ3">
                     <div class="card card-body">
-                        <div class="form-check">
+                        <div class="form-check checkboxpadding">
                             <input type="checkbox" class="form-check-input" id="ExamplesQ3_1">
                             <label class="form-check-label" for="ExamplesQ3_1">Scenario 1 - 'The Toast': 'I feel angry when I think about what my brother said in his toast.'</label>
                         </div>
-                        <div class="form-check">
+                        <div class="form-check checkboxpadding">
                             <input type="checkbox" class="form-check-input" id="ExamplesQ3_2">
                             <label class="form-check-label" for="ExamplesQ3_2">Scenario 2 - 'Unfaithful': 'I feel angry when I realize that my partner has been cheating on me.'</label>
                         </div>
@@ -195,10 +202,10 @@
 
             <div class="form-group">
                 <label asp-for="Conflict.Question4" class="control-label">4. Create a desired outcome statement that will guide you toward permanently resolving your conflict. I want __________.</label>
-                <textarea asp-for="Conflict.Question4" class="form-control"></textarea>
+                <textarea asp-for="Conflict.Question4" class="form-control" rows="6"></textarea>
                 <span asp-validation-for="Conflict.Question4" class="text-danger"></span>
 
-                <p>
+                <p class="buttopading">
                     <a class="btn btn-light" data-toggle="collapse" href="#collapseHelpQ4" role="button" aria-expanded="false" aria-controls="collapseHelpQ4">
                         Help
                     </a>
@@ -208,11 +215,11 @@
                 </p>
                 <div class="collapse" id="collapseHelpQ4">
                     <div class="card card-body">
-                        <div class="form-check">
+                        <div class="form-check checkboxpadding">
                             <input type="checkbox" class="form-check-input" id="HelpQ4_1">
                             <label class="form-check-label" for="HelpQ4_1">My desired outcome statement leads me toward permanently resolving my conflict.</label>
                         </div>
-                        <div class="form-check">
+                        <div class="form-check checkboxpadding">
                             <input type="checkbox" class="form-check-input" id="HelpQ4_2">
                             <label class="form-check-label" for="HelpQ4_2">My desired outcome statement gives me full control over my personal conflict.</label>
                         </div>
@@ -224,11 +231,11 @@
                 </div>
                 <div class="collapse" id="collapseExamplesQ4">
                     <div class="card card-body">
-                        <div class="form-check">
+                        <div class="form-check checkboxpadding">
                             <input type="checkbox" class="form-check-input" id="ExamplesQ4_1">
                             <label class="form-check-label" for="ExamplesQ4_1">Scenario 1 - 'The Toast': I want to approach my brother with a systematic plan that will create limits on his behavior without harming our relationship.</label>
                         </div>
-                        <div class="form-check">
+                        <div class="form-check checkboxpadding">
                             <input type="checkbox" class="form-check-input" id="ExamplesQ4_2">
                             <label class="form-check-label" for="ExamplesQ4_2">Scenario 2 - 'Unfaithful': I want to end this relationship in a firm and peaceful manner while protecting my heart from any more hurt.'</label>
                         </div>
@@ -245,10 +252,10 @@
 
             <div class="form-group">
                 <label asp-for="Conflict.Question5" class="control-label">5. Create and rehearse a solution that fully resolves your conflict.</label>
-                <textarea asp-for="Conflict.Question5" class="form-control"></textarea>
+                <textarea asp-for="Conflict.Question5" class="form-control" rows="6"></textarea>
                 <span asp-validation-for="Conflict.Question5" class="text-danger"></span>
 
-                <p>
+                <p class="buttopading">
                     <a class="btn btn-light" data-toggle="collapse" href="#collapseHelpQ5" role="button" aria-expanded="false" aria-controls="collapseHelpQ5">
                         Help
                     </a>
@@ -258,15 +265,15 @@
                 </p>
                 <div class="collapse" id="collapseHelpQ5">
                     <div class="card card-body">
-                        <div class="form-check">
+                        <div class="form-check checkboxpadding">
                             <input type="checkbox" class="form-check-input" id="HelpQ5_1">
                             <label class="form-check-label" for="HelpQ5_1">I have brainstormed several potential solutions to arrive at my chosen solution.</label>
                         </div>
-                        <div class="form-check">
+                        <div class="form-check checkboxpadding">
                             <input type="checkbox" class="form-check-input" id="HelpQ5_2">
                             <label class="form-check-label" for="HelpQ5_2">I have created a solution that fully resolves my conflict.</label>
                         </div>
-                        <div class="form-check">
+                        <div class="form-check checkboxpadding">
                             <input type="checkbox" class="form-check-input" id="HelpQ5_3">
                             <label class="form-check-label" for="HelpQ5_3">Begin your solution statement with 'I'm going to.'</label>
                         </div>
@@ -278,11 +285,11 @@
                 </div>
                 <div class="collapse" id="collapseExamplesQ5">
                     <div class="card card-body">
-                        <div class="form-check">
+                        <div class="form-check checkboxpadding">
                             <input type="checkbox" class="form-check-input" id="ExamplesQ5_1">
                             <label class="form-check-label" for="ExamplesQ5_1">Scenario 1 - 'The Toast': 'I'm going to talk to my brother, tell him how I feel and ask him to apologize to my wife.'</label>
                         </div>
-                        <div class="form-check">
+                        <div class="form-check checkboxpadding">
                             <input type="checkbox" class="form-check-input" id="ExamplesQ5_2">
                             <label class="form-check-label" for="ExamplesQ5_2">Scenario 2 - 'Unfaithful': 'I'm going to talk to my partner and share that our relationship is over. I have already expressed that infidelity is a deal-breaker.'</label>
                         </div>
@@ -299,10 +306,10 @@
 
             <div class="form-group">
                 <label asp-for="Conflict.Question6" class="control-label">6. What steps are you taking to ensure a permanent solution to your conflict?</label>
-                <textarea asp-for="Conflict.Question6" class="form-control"></textarea>
+                <textarea asp-for="Conflict.Question6" class="form-control" rows="6"></textarea>
                 <span asp-validation-for="Conflict.Question6" class="text-danger"></span>
 
-                <p>
+                <p class="buttopading">
                     <a class="btn btn-light" data-toggle="collapse" href="#collapseHelpQ6" role="button" aria-expanded="false" aria-controls="collapseHelpQ6">
                         Help
                     </a>
@@ -312,27 +319,27 @@
                 </p>
                 <div class="collapse" id="collapseHelpQ6">
                     <div class="card card-body">
-                        <div class="form-check">
+                        <div class="form-check checkboxpadding">
                             <input type="checkbox" class="form-check-input" id="HelpQ6_1">
                             <label class="form-check-label" for="HelpQ6_1">I understand that my solution must consistently generate positive results.</label>
                         </div>
-                        <div class="form-check">
+                        <div class="form-check checkboxpadding">
                             <input type="checkbox" class="form-check-input" id="HelpQ6_2">
                             <label class="form-check-label" for="HelpQ6_2">I understand that solutions that only work part of the time will not bring my desired outcome.</label>
                         </div>
-                        <div class="form-check">
+                        <div class="form-check checkboxpadding">
                             <input type="checkbox" class="form-check-input" id="HelpQ6_3">
                             <label class="form-check-label" for="HelpQ6_3">I take full responsibility over my conflict when I create a solution that resolves my conflict 100% of the time.</label>
                         </div>
-                        <div class="form-check">
+                        <div class="form-check checkboxpadding">
                             <input type="checkbox" class="form-check-input" id="HelpQ6_4">
                             <label class="form-check-label" for="HelpQ6_4">I understand that I may have to test my solution several times in real life situations to validate that it works 100% of the time.</label>
                         </div>
-                        <div class="form-check">
+                        <div class="form-check checkboxpadding">
                             <input type="checkbox" class="form-check-input" id="HelpQ6_5">
                             <label class="form-check-label" for="HelpQ6_5">I will create a journal to test my solution in real life situations.</label>
                         </div>
-                        <div class="form-check">
+                        <div class="form-check checkboxpadding">
                             <input type="checkbox" class="form-check-input" id="HelpQ6_6">
                             <label class="form-check-label" for="HelpQ6_6">I will create a healthy relationship with an accountability partner, coach or therapist.</label>
                         </div>
@@ -344,11 +351,11 @@
                 </div>
                 <div class="collapse" id="collapseExamplesQ6">
                     <div class="card card-body">
-                        <div class="form-check">
+                        <div class="form-check checkboxpadding">
                             <input type="checkbox" class="form-check-input" id="ExamplesQ6_1">
                             <label class="form-check-label" for="ExamplesQ6_1">Scenario 1 - 'The Toast': 'I'm going to watch my brother's drinking carefully. He is no longer going to be alone with my children and no one in my family is ever going to ride with him. I have fully accepted that he is an alcoholic even though he doesn't agree. Moving forward, I will protect myself and my family from his sarcasm as well as his angry outbursts.'</label>
                         </div>
-                        <div class="form-check">
+                        <div class="form-check checkboxpadding">
                             <input type="checkbox" class="form-check-input" id="ExamplesQ6_2">
                             <label class="form-check-label" for="ExamplesQ6_2">Scenario 2 - 'Unfaithful': 'After I decided to leave my ex-partner, I've been receiving texts about meeting up and starting over again. My answer is a steadfast 'no'. I do not trust my ex-partner at all and I will continue to assert my boundaries. While there is still a part of me that wants to give in and get that rush of love by opening up my heart again, I am finally wise enough to take care of myself. I will continue to monitor this situation.'</label>
                         </div>
@@ -369,59 +376,59 @@
                 </p>
                 <div class="collapse" id="collapseSkills">
                     <div class="card card-body">
-                        <div class="form-check">
+                        <div class="form-check checkboxpadding">
                             <input type="checkbox" class="form-check-input" id="Skills_01">
                             <label class="form-check-label" for="Skills_01">Access and Express Emotions - 'I will continue to improve my ability to access and safely express my emotions, especially the negative emotions that are created when I experience discomfort (Anger, Sadness, Fear, Disgust).'</label>
                         </div>
-                        <div class="form-check">
+                        <div class="form-check checkboxpadding">
                             <input type="checkbox" class="form-check-input" id="Skills_02">
                             <label class="form-check-label" for="Skills_02">Contain Emotional Reactivity - 'I will continue to monitor my emotional reactivity with the specific purpose of creating a healthy communication environment for all my relationships.</label>
                         </div>
-                        <div class="form-check">
+                        <div class="form-check checkboxpadding">
                             <input type="checkbox" class="form-check-input" id="Skills_03">
                             <label class="form-check-label" for="Skills_03">Monitor Thoughts, Feelings and Behavior - 'I will monitor my thoughts, feelings and behavior for the purpose of increasing my awareness of my true self.'</label>
                         </div>
-                        <div class="form-check">
+                        <div class="form-check checkboxpadding">
                             <input type="checkbox" class="form-check-input" id="Skills_04">
                             <label class="form-check-label" for="Skills_04">Take Full Responsibility - 'I will take full responsibility for my part in the conflict. I understand that my solution must be fully within my means as opposed to changing a person or situation.</label>
                         </div>
-                        <div class="form-check">
+                        <div class="form-check checkboxpadding">
                             <input type="checkbox" class="form-check-input" id="Skills_05">
                             <label class="form-check-label" for="Skills_05">Manage My Anger - 'I accept that I have a problem with managing my anger. I need to consistently monitor my anger level to prevent harmful outbursts.'</label>
                         </div>
-                        <div class="form-check">
+                        <div class="form-check checkboxpadding">
                             <input type="checkbox" class="form-check-input" id="Skills_06">
                             <label class="form-check-label" for="Skills_06">Manage My Expectations - 'I will continue to manage my expectations of those around me with the purpose of creating a loving and accepting environment toward others.'</label>
                         </div>
-                        <div class="form-check">
+                        <div class="form-check checkboxpadding">
                             <input type="checkbox" class="form-check-input" id="Skills_07">
                             <label class="form-check-label" for="Skills_07">Respect the Needs of Others - 'I will continue to respect the needs of others by gently asking questions as opposed to telling them what to do or how to think.'</label>
                         </div>
-                        <div class="form-check">
+                        <div class="form-check checkboxpadding">
                             <input type="checkbox" class="form-check-input" id="Skills_08">
                             <label class="form-check-label" for="Skills_08">Learn How to Say 'No' - 'I accept that I have a problem saying 'no'. I understand that I have the right to say 'no' whenever necessary. I will continue to speak the desire of my heart and express my feelings.'</label>
                         </div>
-                        <div class="form-check">
+                        <div class="form-check checkboxpadding">
                             <input type="checkbox" class="form-check-input" id="Skills_09">
                             <label class="form-check-label" for="Skills_09">Choose Healthy People - 'I will continue to exercise discretion in choosing the important people in my life. I will create a list of desirable personal attributes to help me stay with healthy choices.'</label>
                         </div>
-                        <div class="form-check">
+                        <div class="form-check checkboxpadding">
                             <input type="checkbox" class="form-check-input" id="Skills_10">
                             <label class="form-check-label" for="Skills_10">Communicate with Love and Respect - 'I will refrain from projecting my values on others by consistently taking responsibility for the way I express myself.'</label>
                         </div>
-                        <div class="form-check">
+                        <div class="form-check checkboxpadding">
                             <input type="checkbox" class="form-check-input" id="Skills_11">
                             <label class="form-check-label" for="Skills_11">Become a Compassionate Listener - 'It is the desire of my heart to become a compassionate listener. I will continue to improve my listening skills.'</label>
                         </div>
-                        <div class="form-check">
+                        <div class="form-check checkboxpadding">
                             <input type="checkbox" class="form-check-input" id="Skills_12">
                             <label class="form-check-label" for="Skills_12">Support Others While They Work Out Their Problems on Their Own - 'I will continue to master the art of supporting others without placing my personal values into the conversation.'</label>
                         </div>
-                        <div class="form-check">
+                        <div class="form-check checkboxpadding">
                             <input type="checkbox" class="form-check-input" id="Skills_13">
                             <label class="form-check-label" for="Skills_13">Set Healthy Goals - 'I will continue to set healthy goals toward a better future. I will share my goals with an accountability partner to help me set realistic and attainable goals.'</label>
                         </div>
-                        <div class="form-check">
+                        <div class="form-check checkboxpadding">
                             <input type="checkbox" class="form-check-input" id="Skills_14">
                             <label class="form-check-label" for="Skills_14">Create a Permanent Solution to a Conflict - 'I will focus my attention on finding permanent solutions to my conflicts. I will not waste time and energy on half-solutions.'</label>
                         </div>

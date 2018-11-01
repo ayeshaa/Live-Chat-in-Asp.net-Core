@@ -17,6 +17,8 @@ namespace ConflictRenewal.Pages.Conflicts
         public CreateModel(ConflictRenewal.Data.ApplicationDbContext context)
         {
             _context = context;
+            Conflict = new Conflict();
+            Conflict.ConflictDate = DateTime.Now;
         }
 
         public IActionResult OnGet()
@@ -33,6 +35,7 @@ namespace ConflictRenewal.Pages.Conflicts
             {
                 return Page();
             }
+            Conflict.MostrecentjournalDate = DateTime.Now.ToUniversalTime();
 
             _context.Conflict.Add(Conflict);
             await _context.SaveChangesAsync();

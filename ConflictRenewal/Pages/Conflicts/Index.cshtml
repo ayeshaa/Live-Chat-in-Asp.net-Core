@@ -35,7 +35,7 @@
                     @Html.DisplayNameFor(model => model.Conflict[0].Question6)
                 </th>*@
             <th>
-                Most recent journal
+                @Html.DisplayNameFor(model => model.Conflict[0].MostrecentjournalDate)@*Most recent journal*@
             </th>
             <th>
                 Status
@@ -69,7 +69,7 @@
                         @Html.DisplayFor(modelItem => item.Question6)
                     </td>*@
                 <td>
-                    5/14/2018
+                    @Html.DisplayFor(modelItem => item.MostrecentjournalDate)
                 </td>
                 <td>
                     Unresolved

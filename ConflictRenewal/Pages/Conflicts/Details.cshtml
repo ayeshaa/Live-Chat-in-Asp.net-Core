@@ -4,7 +4,7 @@
 @{
     ViewData["Title"] = "Details";
 }
-
+<script src="~/lib/jquery/dist/jquery.js"></script>
 <h2>Details</h2>
 
 <div>
@@ -78,12 +78,56 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.JournalContent)
                         </td>
+                        <td>
+                            <a asp-route-id="@item.Id" class="btn btn-outline-info click" asp-page-handler="Edit">Edit</a>
+                        </td>
                     </tr>
                 }
             </table>
         </dd>
     </dl>
+    <hr />
+    <h4>Create Journal</h4>
+    <div class="row">
+        <div class="col-md-6">
+            <form method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="journal.Id" />
+                <input type="hidden" asp-for="journal.ConflictId" />
+                <div class="form-group">
+                    <label asp-for="journal.JournalDate" class="control-label"></label>
+                    <input asp-for="journal.JournalDate" class="form-control" />
+                    <span asp-validation-for="journal.JournalDate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="journal.JournalContent" class="control-label"></label>
+                    <textarea id="textarea" asp-for="journal.JournalContent" class="form-control focus" rows="6"></textarea>
+                    <span asp-validation-for="journal.JournalContent" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    @if (Model.journal.Id == 0)
+                    {
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                    }
+                    else
+                    {
+                        <input type="submit" value="Update" class="btn btn-primary" id="button" asp-page-handler="Edit" />
+                    }
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 <div>
     <a asp-page="./Index">Back to List</a>
 </div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+<script>
+    $(document).ready(function () {
+        if ($("#button").val() == "Update") {
+            $('#textarea').focus();
+        }
+    });
+</script>

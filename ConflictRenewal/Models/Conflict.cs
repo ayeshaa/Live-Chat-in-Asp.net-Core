@@ -38,6 +38,10 @@ namespace ConflictRenewal.Models
         [DataType(DataType.MultilineText)]
         public string Question6 { get; set; }
 
+        [Display(Name = "Most recent journal")]
+        [DataType(DataType.Date)]
+        public DateTime MostrecentjournalDate { get; set; }
+
         public List<Journal> Journals { get; set; }
     }
 }
