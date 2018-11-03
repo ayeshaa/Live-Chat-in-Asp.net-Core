@@ -8,9 +8,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ConflictRenewal.Data;
 using ConflictRenewal.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ConflictRenewal.Pages.Conflicts
 {
+    [Authorize]
     public class EditModel : PageModel
     {
         private readonly ConflictRenewal.Data.ApplicationDbContext _context;

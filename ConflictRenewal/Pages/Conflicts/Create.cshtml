@@ -18,7 +18,7 @@
 <h4>Conflict</h4>
 <hr />
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-5">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
@@ -33,14 +33,11 @@
 
             <div class="form-group">
                 <label asp-for="Conflict.Question1" class="control-label">1. Describe the situation that triggered your strong emotional response.</label>
-                <textarea asp-for="Conflict.Question1" class="form-control" rows="6"></textarea>
+                <textarea asp-for="Conflict.Question1" class="form-control" rows="5"></textarea>
                 <span asp-validation-for="Conflict.Question1" class="text-danger"></span>
                 <p class="buttopading">
                     <a class="btn btn-light" data-toggle="collapse" href="#collapseHelpQ1" role="button" aria-expanded="false" aria-controls="collapseHelpQ1">
-                        Help
-                    </a>
-                    <a class="btn btn-light" data-toggle="collapse" href="#collapseExamplesQ1" role="button" aria-expanded="false" aria-controls="collapseExamplesQ1">
-                        Examples
+                        Help & examples
                     </a>
                 </p>
                 <div class="collapse" id="collapseHelpQ1">
@@ -57,14 +54,10 @@
                             <input type="checkbox" class="form-check-input" id="HelpQ1_3">
                             <label class="form-check-label" for="HelpQ1_3">Be sure to include a short description of your emotional reaction.</label>
                         </div>
-                        <div class="form-check">
+                        <div class="form-check checkboxpadding">
                             <input type="checkbox" class="form-check-input" id="HelpQ1_4">
                             <label class="form-check-label" for="HelpQ1_4">Keep your description brief and to the point.</label>
                         </div>
-                    </div>
-                </div>
-                <div class="collapse" id="collapseExamplesQ1">
-                    <div class="card card-body">
                         <div class="form-check checkboxpadding">
                             <input type="checkbox" class="form-check-input" id="ExamplesQ1_1">
                             <label class="form-check-label" for="ExamplesQ1_1">Scenario 1 - 'The Toast': 'My brother was my best man at our wedding and he said some things in his toast that I really didn't like.'</label>
@@ -79,22 +72,18 @@
                         </div>
                     </div>
                 </div>
-
             </div>
 
             <!-- QUESTION 2 -->
 
             <div class="form-group">
                 <label asp-for="Conflict.Question2" class="control-label">2. Feel the full intensity of your emotional experience and journal it here.</label>
-                <textarea asp-for="Conflict.Question2" class="form-control" rows="6"></textarea>
+                <textarea asp-for="Conflict.Question2" class="form-control" rows="5"></textarea>
                 <span asp-validation-for="Conflict.Question2" class="text-danger"></span>
 
                 <p class="buttopading">
                     <a class="btn btn-light" data-toggle="collapse" href="#collapseHelpQ2" role="button" aria-expanded="false" aria-controls="collapseHelpQ2">
-                        Help
-                    </a>
-                    <a class="btn btn-light" data-toggle="collapse" href="#collapseExamplesQ2" role="button" aria-expanded="false" aria-controls="collapseExamplesQ2">
-                        Examples
+                        Help & examples
                     </a>
                 </p>
                 <div class="collapse" id="collapseHelpQ2">
@@ -111,14 +100,10 @@
                             <input type="checkbox" class="form-check-input" id="HelpQ2_3">
                             <label class="form-check-label" for="HelpQ2_3">I have experienced my core emotion long enough to feel a cathartic release.</label>
                         </div>
-                        <div class="form-check">
+                        <div class="form-check checkboxpadding">
                             <input type="checkbox" class="form-check-input" id="HelpQ2_4">
                             <label class="form-check-label" for="HelpQ2_4">I have fully accepted my part in my conflict and am able to fully accept either outcome to my conflict.</label>
                         </div>
-                    </div>
-                </div>
-                <div class="collapse" id="collapseExamplesQ2">
-                    <div class="card card-body">
                         <div class="form-check checkboxpadding">
                             <input type="checkbox" class="form-check-input" id="ExamplesQ2_1">
                             <label class="form-check-label" for="ExamplesQ2_1">Scenario 1 - 'The Toast': 'As I begin to focus on my brother's speech I am feeling so angry. It's so strong I can feel it in my chest and shoulders. I want to slap him in the face.'</label>
@@ -133,22 +118,18 @@
                         </div>
                     </div>
                 </div>
-
             </div>
 
             <!-- QUESTION 3 -->
 
             <div class="form-group">
                 <label asp-for="Conflict.Question3" class="control-label">3. Create a healthy conflict statement. I feel _________ when _________.</label>
-                <textarea asp-for="Conflict.Question3" class="form-control" rows="6"></textarea>
+                <textarea asp-for="Conflict.Question3" class="form-control" rows="5"></textarea>
                 <span asp-validation-for="Conflict.Question3" class="text-danger"></span>
 
                 <p class="buttopading">
                     <a class="btn btn-light" data-toggle="collapse" href="#collapseHelpQ3" role="button" aria-expanded="false" aria-controls="collapseHelpQ3">
-                        Help
-                    </a>
-                    <a class="btn btn-light" data-toggle="collapse" href="#collapseExamplesQ3" role="button" aria-expanded="false" aria-controls="collapseExamplesQ3">
-                        Examples
+                        Help & examples
                     </a>
                 </p>
                 <div class="collapse" id="collapseHelpQ3">
@@ -173,14 +154,10 @@
                             <input type="checkbox" class="form-check-input" id="HelpQ3_5">
                             <label class="form-check-label" for="HelpQ3_5">My conditional statement is designed to give me full control over my part in the current conflict.</label>
                         </div>
-                        <div class="form-check">
+                        <div class="form-check checkboxpadding">
                             <input type="checkbox" class="form-check-input" id="HelpQ3_6">
                             <label class="form-check-label" for="HelpQ3_6">My conditional statement does not attempt to control anyone or anything in the external world.</label>
                         </div>
-                    </div>
-                </div>
-                <div class="collapse" id="collapseExamplesQ3">
-                    <div class="card card-body">
                         <div class="form-check checkboxpadding">
                             <input type="checkbox" class="form-check-input" id="ExamplesQ3_1">
                             <label class="form-check-label" for="ExamplesQ3_1">Scenario 1 - 'The Toast': 'I feel angry when I think about what my brother said in his toast.'</label>
@@ -195,22 +172,18 @@
                         </div>
                     </div>
                 </div>
-
             </div>
 
             <!-- QUESTION 4 -->
 
             <div class="form-group">
                 <label asp-for="Conflict.Question4" class="control-label">4. Create a desired outcome statement that will guide you toward permanently resolving your conflict. I want __________.</label>
-                <textarea asp-for="Conflict.Question4" class="form-control" rows="6"></textarea>
+                <textarea asp-for="Conflict.Question4" class="form-control" rows="5"></textarea>
                 <span asp-validation-for="Conflict.Question4" class="text-danger"></span>
 
                 <p class="buttopading">
                     <a class="btn btn-light" data-toggle="collapse" href="#collapseHelpQ4" role="button" aria-expanded="false" aria-controls="collapseHelpQ4">
-                        Help
-                    </a>
-                    <a class="btn btn-light" data-toggle="collapse" href="#collapseExamplesQ4" role="button" aria-expanded="false" aria-controls="collapseExamplesQ4">
-                        Examples
+                        Help & examples
                     </a>
                 </p>
                 <div class="collapse" id="collapseHelpQ4">
@@ -223,14 +196,10 @@
                             <input type="checkbox" class="form-check-input" id="HelpQ4_2">
                             <label class="form-check-label" for="HelpQ4_2">My desired outcome statement gives me full control over my personal conflict.</label>
                         </div>
-                        <div class="form-check">
+                        <div class="form-check checkboxpadding">
                             <input type="checkbox" class="form-check-input" id="HelpQ4_3">
                             <label class="form-check-label" for="HelpQ4_3">My desired outcome statement creates a peaceful feeling in my heart.</label>
                         </div>
-                    </div>
-                </div>
-                <div class="collapse" id="collapseExamplesQ4">
-                    <div class="card card-body">
                         <div class="form-check checkboxpadding">
                             <input type="checkbox" class="form-check-input" id="ExamplesQ4_1">
                             <label class="form-check-label" for="ExamplesQ4_1">Scenario 1 - 'The Toast': I want to approach my brother with a systematic plan that will create limits on his behavior without harming our relationship.</label>
@@ -245,22 +214,18 @@
                         </div>
                     </div>
                 </div>
-
             </div>
 
             <!-- QUESTION 5 -->
 
             <div class="form-group">
                 <label asp-for="Conflict.Question5" class="control-label">5. Create and rehearse a solution that fully resolves your conflict.</label>
-                <textarea asp-for="Conflict.Question5" class="form-control" rows="6"></textarea>
+                <textarea asp-for="Conflict.Question5" class="form-control" rows="5"></textarea>
                 <span asp-validation-for="Conflict.Question5" class="text-danger"></span>
 
                 <p class="buttopading">
                     <a class="btn btn-light" data-toggle="collapse" href="#collapseHelpQ5" role="button" aria-expanded="false" aria-controls="collapseHelpQ5">
-                        Help
-                    </a>
-                    <a class="btn btn-light" data-toggle="collapse" href="#collapseExamplesQ5" role="button" aria-expanded="false" aria-controls="collapseExamplesQ5">
-                        Examples
+                        Help & examples
                     </a>
                 </p>
                 <div class="collapse" id="collapseHelpQ5">
@@ -277,14 +242,10 @@
                             <input type="checkbox" class="form-check-input" id="HelpQ5_3">
                             <label class="form-check-label" for="HelpQ5_3">Begin your solution statement with 'I'm going to.'</label>
                         </div>
-                        <div class="form-check">
+                        <div class="form-check checkboxpadding">
                             <input type="checkbox" class="form-check-input" id="HelpQ5_4">
                             <label class="form-check-label" for="HelpQ5_4">I will rehearse my solution until I feel confident that I can use it in real life.</label>
                         </div>
-                    </div>
-                </div>
-                <div class="collapse" id="collapseExamplesQ5">
-                    <div class="card card-body">
                         <div class="form-check checkboxpadding">
                             <input type="checkbox" class="form-check-input" id="ExamplesQ5_1">
                             <label class="form-check-label" for="ExamplesQ5_1">Scenario 1 - 'The Toast': 'I'm going to talk to my brother, tell him how I feel and ask him to apologize to my wife.'</label>
@@ -299,22 +260,18 @@
                         </div>
                     </div>
                 </div>
-
             </div>
 
             <!-- QUESTION 6 -->
 
             <div class="form-group">
                 <label asp-for="Conflict.Question6" class="control-label">6. What steps are you taking to ensure a permanent solution to your conflict?</label>
-                <textarea asp-for="Conflict.Question6" class="form-control" rows="6"></textarea>
+                <textarea asp-for="Conflict.Question6" class="form-control" rows="5"></textarea>
                 <span asp-validation-for="Conflict.Question6" class="text-danger"></span>
 
                 <p class="buttopading">
                     <a class="btn btn-light" data-toggle="collapse" href="#collapseHelpQ6" role="button" aria-expanded="false" aria-controls="collapseHelpQ6">
-                        Help
-                    </a>
-                    <a class="btn btn-light" data-toggle="collapse" href="#collapseExamplesQ6" role="button" aria-expanded="false" aria-controls="collapseExamplesQ6">
-                        Examples
+                        Help & examples
                     </a>
                 </p>
                 <div class="collapse" id="collapseHelpQ6">
@@ -343,14 +300,10 @@
                             <input type="checkbox" class="form-check-input" id="HelpQ6_6">
                             <label class="form-check-label" for="HelpQ6_6">I will create a healthy relationship with an accountability partner, coach or therapist.</label>
                         </div>
-                        <div class="form-check">
+                        <div class="form-check checkboxpadding">
                             <input type="checkbox" class="form-check-input" id="HelpQ6_7">
                             <label class="form-check-label" for="HelpQ6_7">I will review my progress at 1 month, 3 months, 6 months and yearly thereafter to ensure that I maintain a permanent solution to my conflict.</label>
                         </div>
-                    </div>
-                </div>
-                <div class="collapse" id="collapseExamplesQ6">
-                    <div class="card card-body">
                         <div class="form-check checkboxpadding">
                             <input type="checkbox" class="form-check-input" id="ExamplesQ6_1">
                             <label class="form-check-label" for="ExamplesQ6_1">Scenario 1 - 'The Toast': 'I'm going to watch my brother's drinking carefully. He is no longer going to be alone with my children and no one in my family is ever going to ride with him. I have fully accepted that he is an alcoholic even though he doesn't agree. Moving forward, I will protect myself and my family from his sarcasm as well as his angry outbursts.'</label>
@@ -364,14 +317,13 @@
                             <label class="form-check-label" for="ExamplesQ6_3">Scenario 3 - 'Surgery': 'So far, my rehab is going well, and since it is almost over, I'm excited to see how it holds up when I'm on the tennis court. I'm going to be very careful not to push too hard. I am fully capable of making the decision to get a second surgery if necessary. For now I am hopeful.'</label>
                         </div>
                     </div>
-
                 </div>
-
+            
                 <!-- PERSONAL SKILLS -->
 
                 <p>
                     <a class="btn btn-light" data-toggle="collapse" href="#collapseSkills" role="button" aria-expanded="false" aria-controls="collapseSkills">
-                        My commitment is to master the following personal skills:
+                        Personal skills
                     </a>
                 </p>
                 <div class="collapse" id="collapseSkills">
