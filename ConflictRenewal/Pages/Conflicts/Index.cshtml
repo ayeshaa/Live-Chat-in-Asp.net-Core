@@ -19,27 +19,27 @@
             <th>
                 @Html.DisplayNameFor(model => model.Conflict[0].Question1)
             </th>
-            @*<th>
+            <th>
                 @Html.DisplayNameFor(model => model.Conflict[0].Question2)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Conflict[0].Question3)
-            </th>*@
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Conflict[0].Question4)
             </th>
-            @*<th>
+            <th>
                 @Html.DisplayNameFor(model => model.Conflict[0].Question5)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Conflict[0].Question6)
-            </th>*@
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Conflict[0].MostrecentjournalDate)@*Most recent journal*@
             </th>
-            <th>
+            @*<th>
                 Status
-            </th>
+            </th>*@
             <th></th>
         </tr>
     </thead>
@@ -53,27 +53,27 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Question1)
                 </td>
-                @*<td>
+                <td>
                     @Html.DisplayFor(modelItem => item.Question2)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Question3)
-                </td>*@
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Question4)
                 </td>
-                @*<td>
+                <td>
                     @Html.DisplayFor(modelItem => item.Question5)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Question6)
-                </td>*@
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.MostrecentjournalDate)
                 </td>
-                <td>
+                @*<td>
                     Unresolved
-                </td>
+                </td>*@
                 <td>
                     @*<a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |*@
                     <a asp-page="./Details" asp-route-id="@item.Id" class="btn btn-primary">View</a>

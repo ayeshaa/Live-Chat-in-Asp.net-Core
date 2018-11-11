@@ -14,32 +14,32 @@ namespace ConflictRenewal.Models
         [DataType(DataType.Date)]
         public DateTime ConflictDate { get; set; }
 
-        [Display(Name = "Conflict Trigger")]
+        [Display(Name = "1. Conflict Trigger")]
         [DataType(DataType.MultilineText)]
         [Required(ErrorMessage = "Response to question 1 required.")]
         public string Question1 { get; set; }
 
-        [Display(Name = "Emotional Experience")]
+        [Display(Name = "2. Emotional Experience")]
         [DataType(DataType.MultilineText)]
         [Required(ErrorMessage = "Response to question 2 required.")]
         public string Question2 { get; set; }
 
-        [Display(Name = "Conflict Statement")]
+        [Display(Name = "3. Conflict Statement")]
         [DataType(DataType.MultilineText)]
         [Required(ErrorMessage = "Response to question 3 required.")]
         public string Question3 { get; set; }
 
-        [Display(Name = "Desired Outcome")]
+        [Display(Name = "4. Desired Outcome")]
         [DataType(DataType.MultilineText)]
         [Required(ErrorMessage = "Response to question 4 required.")]
         public string Question4 { get; set; }
 
-        [Display(Name = "Solution Rehearsal")]
+        [Display(Name = "5. Solution Rehearsal")]
         [DataType(DataType.MultilineText)]
         [Required(ErrorMessage = "Response to question 5 required.")]
         public string Question5 { get; set; }
 
-        [Display(Name = "Permanent Solution")]
+        [Display(Name = "6. Permanent Solution")]
         [DataType(DataType.MultilineText)]
         [Required(ErrorMessage = "Response to question 6 required.")]
         public string Question6 { get; set; }

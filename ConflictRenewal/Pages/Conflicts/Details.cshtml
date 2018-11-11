@@ -59,10 +59,10 @@
         <dd>
             @Html.DisplayFor(model => model.Conflict.Question6)
         </dd>
-        @*<dd>
-            <a asp-page="./Edit" asp-route-id="@Model.Conflict.Id" class="btn btn-light">Edit</a>
-            <a asp-page="./Delete" asp-route-id="@Model.Conflict.Id" class="btn btn-light">Delete</a>
-        </dd>*@
+        <dd>
+            <a asp-page="./Edit" asp-route-id="@Model.Conflict.Id" class="btn btn-outline-info">Edit</a>
+            <a asp-page="./Delete" asp-route-id="@Model.Conflict.Id" class="btn btn-outline-info">Delete</a>
+        </dd>
         <dd>
             <table class="table">
                 <tr>
@@ -78,9 +78,9 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.JournalContent)
                         </td>
-                        @*<td>
+                        <td>
                             <a asp-route-id="@item.Id" class="btn btn-outline-info click" asp-page-handler="Edit">Edit</a>
-                        </td>*@
+                        </td>
                     </tr>
                 }
             </table>
