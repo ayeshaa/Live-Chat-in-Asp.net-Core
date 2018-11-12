@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using ConflictRenewal.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using ConflictRenewal.Data;
-using ConflictRenewal.Models;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace ConflictRenewal.Pages.Conflicts
 {
@@ -94,8 +92,9 @@ namespace ConflictRenewal.Pages.Conflicts
                     throw;
                 }
             }
-            return RedirectToPage("./Index");
-           
+
+            return RedirectToPage(string.Format("./Conflicts/Details?id={0}", id));
+
         }
 
         public async Task<IActionResult> OnPostAsync()
@@ -109,7 +108,7 @@ namespace ConflictRenewal.Pages.Conflicts
             _context.Journal.Add(journal);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("./Index");
+            return RedirectToPage(string.Format("/Conflicts/Details?id={0}", journal.Id));
         }
 
         private bool ConflictExists(int id)
