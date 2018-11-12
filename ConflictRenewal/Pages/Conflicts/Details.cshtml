@@ -60,8 +60,8 @@
             @Html.DisplayFor(model => model.Conflict.Question6)
         </dd>
         <dd>
-            <a asp-page="./Edit" asp-route-id="@Model.Conflict.Id" class="btn btn-light">Edit</a>
-            <a asp-page="./Delete" asp-route-id="@Model.Conflict.Id" class="btn btn-light">Delete</a>
+            <a asp-page="./Edit" asp-route-id="@Model.Conflict.Id" class="btn btn-outline-info">Edit</a>
+            <a asp-page="./Delete" asp-route-id="@Model.Conflict.Id" class="btn btn-outline-info">Delete</a>
         </dd>
         <dd>
             <table class="table">
@@ -107,7 +107,7 @@
                 <div class="form-group">
                     @if (Model.journal.Id == 0)
                     {
-                        <input type="submit" value="Create" class="btn btn-primary" />
+                        <input type="submit" value="Add journal entry" class="btn btn-primary" />
                     }
                     else
                     {

@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using ConflictRenewal.Data;
 using ConflictRenewal.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ConflictRenewal.Pages.Conflicts
 {
+    [Authorize]
     public class IndexModel : PageModel
     {
         private readonly ConflictRenewal.Data.ApplicationDbContext _context;

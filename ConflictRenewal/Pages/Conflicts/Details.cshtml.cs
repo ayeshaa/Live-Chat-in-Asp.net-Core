@@ -1,13 +1,17 @@
-﻿using ConflictRenewal.Models;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Linq;
-using System.Threading.Tasks;
+using ConflictRenewal.Data;
+using ConflictRenewal.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ConflictRenewal.Pages.Conflicts
 {
+    [Authorize]
     public class DetailsModel : PageModel
     {
         public static int ConId { get; set; }
@@ -92,9 +96,8 @@ namespace ConflictRenewal.Pages.Conflicts
                     throw;
                 }
             }
-
-            return RedirectToPage(string.Format("./Conflicts/Details?id={0}", id));
-
+            return RedirectToPage("./Index");
+           
         }
 
         public async Task<IActionResult> OnPostAsync()
@@ -108,7 +111,8 @@ namespace ConflictRenewal.Pages.Conflicts
             _context.Journal.Add(journal);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage(string.Format("/Conflicts/Details?id={0}", journal.Id));
+            // return RedirectToPage("./Index");
+            return RedirectToPage("/Conflicts/Details", new { id = ConId });
         }
 
         private bool ConflictExists(int id)

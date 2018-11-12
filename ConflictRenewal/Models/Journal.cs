@@ -16,7 +16,7 @@ namespace ConflictRenewal.Models
 
         [Display(Name = "Journal Entry")]
         [DataType(DataType.MultilineText)]
-        [Required(ErrorMessage = "JournalContent required")]
+        [Required(ErrorMessage = "Journal entry required.")]
         public string JournalContent { get; set; }
 
         public int ConflictId { get; set; }

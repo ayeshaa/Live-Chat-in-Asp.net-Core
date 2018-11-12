@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using ConflictRenewal.Data;
 using ConflictRenewal.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ConflictRenewal.Pages.Conflicts
 {
+    [Authorize]
     public class CreateModel : PageModel
     {
         private readonly ConflictRenewal.Data.ApplicationDbContext _context;
