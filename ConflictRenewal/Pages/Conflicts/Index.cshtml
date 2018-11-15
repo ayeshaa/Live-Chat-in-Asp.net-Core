@@ -1,6 +1,7 @@
 ﻿@page
 @model ConflictRenewal.Pages.Conflicts.IndexModel
-
+@inject UserManager<IdentityUser> UserManager
+@using ConflictRenewal.Models
 @{
     ViewData["Title"] = "Index";
 }
@@ -13,40 +14,49 @@
 <table class="table">
     <thead>
         <tr>
+            @if (Model.Conflictview.isAdmin == true)
+            {
+                <th>
+                    Email Id
+                </th>
+            }
             <th>
-                @Html.DisplayNameFor(model => model.Conflict[0].ConflictDate)
+                @Html.DisplayNameFor(model => model.Conflictview.Conflict[0].ConflictDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Conflict[0].Question1)
+                @Html.DisplayNameFor(model => model.Conflictview.Conflict[0].Question1)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Conflict[0].Question2)
+                @Html.DisplayNameFor(model => model.Conflictview.Conflict[0].Question2)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Conflict[0].Question3)
+                @Html.DisplayNameFor(model => model.Conflictview.Conflict[0].Question3)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Conflict[0].Question4)
+                @Html.DisplayNameFor(model => model.Conflictview.Conflict[0].Question4)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Conflict[0].Question5)
+                @Html.DisplayNameFor(model => model.Conflictview.Conflict[0].Question5)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Conflict[0].Question6)
+                @Html.DisplayNameFor(model => model.Conflictview.Conflict[0].Question6)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Conflict[0].MostrecentjournalDate)@*Most recent journal*@
+                @Html.DisplayNameFor(model => model.Conflictview.Conflict[0].MostrecentjournalDate)@*Most recent journal*@
             </th>
-            @*<th>
-                Status
-            </th>*@
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.Conflict)
+        @foreach (var item in Model.Conflictview.Conflict)
         {
             <tr>
+                @if (item.AdminRole == RoleEnum.Admin.ToString())
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EmailID)
+                    </td>
+                }
                 <td>
                     @Html.DisplayFor(modelItem => item.ConflictDate)
                 </td>
@@ -71,14 +81,10 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.MostrecentjournalDate)
                 </td>
-                @*<td>
-                    Unresolved
-                </td>*@
                 <td>
                     @*<a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |*@
                     <a asp-page="./Details" asp-route-id="@item.Id" class="btn btn-primary">View</a>
-                    @*|
-                        <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>*@
+                    @*|<a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>*@
                 </td>
             </tr>
         }

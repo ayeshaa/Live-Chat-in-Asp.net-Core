@@ -1,8 +1,7 @@
 ﻿using ConflictRenewal.Models;
+using Microsoft.AspNetCore.Identity;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace ConflictRenewal.Data
 {
@@ -13,13 +12,10 @@ namespace ConflictRenewal.Data
             context.Database.EnsureCreated();
 
             // Look for any conflicts.
-            if (context.Conflict.Any())
+            if (!context.Conflict.Any())
             {
-                return;   // DB has been seeded
-            }
-
-            var conflicts = new Conflict[]
-            {
+                var conflicts = new Conflict[]
+                {
                 new Conflict
                 {
                     ConflictDate = DateTime.Parse("2018-01-01"),
@@ -40,15 +36,16 @@ namespace ConflictRenewal.Data
                     Question5 = "I'm going to calmly tell my shift leader in private tomorrow that I had an angry reaction to the way he corrected me. I'm going to ask that in the future he just let me know calmly.",
                     Question6 = "I'm going to talk to him tomorrow, but if I'm not able to resolve this and this keeps happening, I'm going to find another job."
                 }
-            };
-            foreach (Conflict c in conflicts)
-            {
-                context.Conflict.Add(c);
-            }
-            context.SaveChanges();
+                };
+                foreach (Conflict c in conflicts)
+                {
+                    c.MostrecentjournalDate = DateTime.Parse("2018-02-01");
+                    context.Conflict.Add(c);
+                }
+                context.SaveChanges();
 
-            var journals = new Journal[]
-            {
+                var journals = new Journal[]
+                {
                 new Journal
                 {
                     JournalDate = DateTime.Parse("2018-01-08"),
@@ -73,12 +70,38 @@ namespace ConflictRenewal.Data
                     JournalContent = "Things have been going pretty well, I've actually been keeping my station immaculate and working really hard, so there is no reason for my shift leader to say anything.",
                     ConflictId = 2
                 }
-            };
-            foreach (Journal j in journals)
-            {
-                context.Journal.Add(j);
+                };
+                foreach (Journal j in journals)
+                {
+                    context.Journal.Add(j);
+                }
+                context.SaveChanges();
             }
-            context.SaveChanges();
+
+            if (!context.Roles.Any())
+            {
+                var UserRole = new IdentityRole[]{
+                    new IdentityRole
+                    {
+                        Name = "Admin",
+                        NormalizedName = "Admin",
+                        ConcurrencyStamp = Guid.NewGuid().ToString()
+                    },
+                     new IdentityRole
+                    {
+                        Name = "User",
+                        NormalizedName = "User",
+                        ConcurrencyStamp = Guid.NewGuid().ToString()
+                    }
+                };
+
+                foreach (IdentityRole r in UserRole)
+                {
+                    context.Roles.Add(r);
+                }
+                context.SaveChanges();
+            }
+
         }
     }
 }

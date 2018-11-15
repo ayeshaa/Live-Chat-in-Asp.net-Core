@@ -10,6 +10,7 @@
     <Compile Remove="Data\Migrations\20181030111903_Conflict_MostrecentjournalDate.Designer.cs" />
     <Compile Remove="Data\Migrations\20181030112806_Conflict_MostrecentjournalDate.cs" />
     <Compile Remove="Data\Migrations\20181030112806_Conflict_MostrecentjournalDate.Designer.cs" />
+    <Compile Remove="Data\Migrations\20181112055342_Conflict.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -20,6 +21,12 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\css\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System.Web">
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Web.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

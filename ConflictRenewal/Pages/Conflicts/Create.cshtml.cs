@@ -37,6 +37,8 @@ namespace ConflictRenewal.Pages.Conflicts
             {
                 return Page();
             }
+            Conflict.EmailID = User.Identity.Name;
+            Conflict.ConflictDate= DateTime.Now.ToUniversalTime();
             Conflict.MostrecentjournalDate = DateTime.Now.ToUniversalTime();
 
             _context.Conflict.Add(Conflict);

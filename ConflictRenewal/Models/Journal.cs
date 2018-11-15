@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ConflictRenewal.Models
 {
@@ -20,6 +18,15 @@ namespace ConflictRenewal.Models
         public string JournalContent { get; set; }
 
         public int ConflictId { get; set; }
+
+        public string createdBy { get; set; }
+
+        [NotMapped]
+        public string AdminRole { get; set; }
+
+        [NotMapped]
+        public string UserRole { get; set; }
+
         public Conflict Conflict { get; set; }
     }
 }

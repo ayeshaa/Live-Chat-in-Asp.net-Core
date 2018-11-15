@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using ConflictRenewal.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using ConflictRenewal.Data;
-using ConflictRenewal.Models;
-using Microsoft.AspNetCore.Authorization;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace ConflictRenewal.Pages.Conflicts
 {
@@ -26,6 +24,8 @@ namespace ConflictRenewal.Pages.Conflicts
 
         }
 
+        public RoleEnum rollEnum { get; set; }
+
         public Conflict Conflict { get; set; }
 
         [BindProperty]
@@ -42,6 +42,24 @@ namespace ConflictRenewal.Pages.Conflicts
                                 .Include(c => c.Journals)
                                 .AsNoTracking()
                                 .FirstOrDefaultAsync(m => m.Id == id);
+
+            foreach (var item in Conflict.Journals)
+            {
+                if (item.createdBy != null)
+                {
+                    var user = _context.Users.Where(a => a.UserName == item.createdBy).FirstOrDefault();
+                    var role = _context.UserRoles.Where(a => a.UserId == user.Id).FirstOrDefault();
+                    var roletext = _context.Roles.Where(a => a.Id == role.RoleId).FirstOrDefault();
+                    item.AdminRole = roletext.Name;
+                }
+            }
+            var loginuser = _context.Users.Where(a => a.UserName == User.Identity.Name).FirstOrDefault();
+            var loginuserrole = _context.UserRoles.Where(a => a.UserId == loginuser.Id).FirstOrDefault();
+            var loginuserroletext = _context.Roles.Where(a => a.Id == loginuserrole.RoleId).FirstOrDefault();
+            foreach (var item in Conflict.Journals)
+            {
+                item.UserRole = loginuserroletext.Name;
+            }
 
             if (Conflict == null)
             {
@@ -72,13 +90,13 @@ namespace ConflictRenewal.Pages.Conflicts
             return Page();
         }
 
-        public async Task<IActionResult> OnPostEditAsync(int id)
+        public async Task<IActionResult> OnPostEditAsync(int? id)
         {
             if (!ModelState.IsValid)
             {
                 return Page();
             }
-
+            journal.JournalDate = DateTime.Now.ToUniversalTime();
             _context.Attach(journal).State = EntityState.Modified;
 
             try
@@ -96,10 +114,25 @@ namespace ConflictRenewal.Pages.Conflicts
                     throw;
                 }
             }
-            return RedirectToPage("./Index");
-           
+            return RedirectToPage("/Conflicts/Details", new { id = ConId });
         }
+        public async Task<IActionResult> OnGetDeleteAsync(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
 
+            journal = await _context.Journal.FindAsync(id);
+
+            if (journal != null)
+            {
+                _context.Journal.Remove(journal);
+                await _context.SaveChangesAsync();
+            }
+
+            return RedirectToPage("/Conflicts/Details", new { id = ConId });
+        }
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
@@ -107,6 +140,9 @@ namespace ConflictRenewal.Pages.Conflicts
                 return Page();
             }
             journal.ConflictId = ConId;
+            journal.createdBy = User.Identity.Name;
+            journal.JournalDate = DateTime.Now.ToUniversalTime();
+            journal.createdBy = User.Identity.Name;
 
             _context.Journal.Add(journal);
             await _context.SaveChangesAsync();

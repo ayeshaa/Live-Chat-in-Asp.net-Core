@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using ConflictRenewal.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using ConflictRenewal.Data;
-using ConflictRenewal.Models;
-using Microsoft.AspNetCore.Authorization;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace ConflictRenewal.Pages.Conflicts
 {
@@ -21,16 +18,42 @@ namespace ConflictRenewal.Pages.Conflicts
             _context = context;
         }
 
-        public IList<Conflict> Conflict { get; set; }
+        public RoleEnum rollEnum { get; set; }
 
+        public ConflictViewModel Conflictview { get; set; }
+
+        //public IList<Conflict> Conflict { get; set; }
+
+        ConflictViewModel conflict = new ConflictViewModel();
         public async Task OnGetAsync()
         {
-            Conflict = await _context.Conflict.Include(a => a.Journals).ToListAsync();
-            foreach (var item in Conflict)
+            var user = _context.Users.Where(a => a.UserName == User.Identity.Name).FirstOrDefault();
+            var role = _context.UserRoles.Where(a => a.UserId == user.Id).FirstOrDefault();
+            var roletext = _context.Roles.Where(a => a.Id == role.RoleId).FirstOrDefault();
+            if (roletext.Name == RoleEnum.Admin.ToString())
             {
-                item.MostrecentjournalDate = item.Journals.Where(a => a.ConflictId == item.Id).OrderByDescending(a => a.JournalDate).Select(a => a.JournalDate).FirstOrDefault();
+                conflict.Conflict = await _context.Conflict.Include(a => a.Journals).ToListAsync();
             }
-            Conflict = Conflict.OrderByDescending(a => a.MostrecentjournalDate).ToList();
+            else
+            {
+                conflict.Conflict = await _context.Conflict.Where(a => a.EmailID == User.Identity.Name).Include(a => a.Journals).ToListAsync();
+            }
+            foreach (var item in conflict.Conflict)
+            {
+                item.MostrecentjournalDate = item.Journals.Where(a => a.ConflictId == item.Id).OrderByDescending(a => a.JournalDate).Select(a => (DateTime?) a.JournalDate).FirstOrDefault();
+                item.AdminRole = roletext.Name;
+                if (item.AdminRole == RoleEnum.Admin.ToString())
+                {
+                    conflict.isAdmin = true;
+                }
+                else
+                {
+                    conflict.isAdmin = false;
+                }
+            }
+            conflict.Conflict = conflict.Conflict.OrderByDescending(a => a.MostrecentjournalDate).ToList();
+
+            Conflictview = conflict;
         }
     }
 }

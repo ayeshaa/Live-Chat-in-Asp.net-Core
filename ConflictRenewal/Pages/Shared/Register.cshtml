@@ -1,0 +1,130 @@
+﻿@page
+@model ConflictRenewal.Pages.Shared.RegisterModel
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@{
+    ViewData["Title"] = "Register";
+}
+
+<h2>Register</h2>
+
+<h4>Create a new account.</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="AspNetUsers.UserName" class="control-label"></label>
+                <input asp-for="AspNetUsers.UserName" class="form-control" />
+                <span asp-validation-for="AspNetUsers.UserName" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+            <label asp-for="AspNetUser.NormalizedUserName" class="control-label"></label>
+            <input asp-for="AspNetUser.NormalizedUserName" class="form-control" />
+            <span asp-validation-for="AspNetUser.NormalizedUserName" class="text-danger"></span>
+        </div>*@
+            @*<div class="form-group">
+            <label asp-for="AspNetUser.Email" class="control-label"></label>
+            <input asp-for="AspNetUser.Email" class="form-control" />
+            <span asp-validation-for="AspNetUser.Email" class="text-danger"></span>
+        </div>*@
+            @*<div class="form-group">
+            <label asp-for="AspNetUser.NormalizedEmail" class="control-label"></label>
+            <input asp-for="AspNetUser.NormalizedEmail" class="form-control" />
+            <span asp-validation-for="AspNetUser.NormalizedEmail" class="text-danger"></span>
+        </div>*@
+            @*<div class="form-group">
+            <div class="checkbox">
+                <label>
+                    <input asp-for="AspNetUser.EmailConfirmed" /> @Html.DisplayNameFor(model => model.EmailConfirmed))
+                </label>
+            </div>
+        </div>*@
+            @*<div class="form-group">
+            <label asp-for="AspNetUser.PasswordHash" class="control-label"></label>
+            <input asp-for="AspNetUser.PasswordHash" class="form-control" />
+            <span asp-validation-for="AspNetUser.PasswordHash" class="text-danger"></span>
+        </div>*@
+            @*<div class="form-group">
+            <label asp-for="AspNetUser.SecurityStamp" class="control-label"></label>
+            <input asp-for="AspNetUser.SecurityStamp" class="form-control" />
+            <span asp-validation-for="AspNetUser.SecurityStamp" class="text-danger"></span>
+        </div>*@
+            @*<div class="form-group">
+            <label asp-for="AspNetUser.ConcurrencyStamp" class="control-label"></label>
+            <input asp-for="AspNetUser.ConcurrencyStamp" class="form-control" />
+            <span asp-validation-for="AspNetUser.ConcurrencyStamp" class="text-danger"></span>
+        </div>*@
+            @*<div class="form-group">
+            <label asp-for="AspNetUser.PhoneNumber" class="control-label"></label>
+            <input asp-for="AspNetUser.PhoneNumber" class="form-control" />
+            <span asp-validation-for="AspNetUser.PhoneNumber" class="text-danger"></span>
+        </div>*@
+            @*<div class="form-group">
+            <div class="checkbox">
+                <label>
+                    <input asp-for="AspNetUser.PhoneNumberConfirmed" /> @Html.DisplayNameFor(model => model.PhoneNumberConfirmed))
+                </label>
+            </div>
+        </div>*@
+            @*<div class="form-group">
+            <div class="checkbox">
+                <label>
+                    <input asp-for="AspNetUser.TwoFactorEnabled" /> @Html.DisplayNameFor(model => model.TwoFactorEnabled))
+                </label>
+            </div>
+        </div>*@
+            @*<div class="form-group">
+            <label asp-for="AspNetUser.LockoutEnd" class="control-label"></label>
+            <input asp-for="AspNetUser.LockoutEnd" class="form-control" />
+            <span asp-validation-for="AspNetUser.LockoutEnd" class="text-danger"></span>
+        </div>*@
+            @*<div class="form-group">
+            <div class="checkbox">
+                <label>
+                    <input asp-for="AspNetUser.LockoutEnabled" /> @Html.DisplayNameFor(model => model.LockoutEnabled))
+                </label>
+            </div>
+        </div>*@
+            @*<div class="form-group">
+            <label asp-for="AspNetUser.AccessFailedCount" class="control-label"></label>
+            <input asp-for="AspNetUser.AccessFailedCount" class="form-control" />
+            <span asp-validation-for="AspNetUser.AccessFailedCount" class="text-danger"></span>
+        </div>*@
+            <div class="form-group">
+                <label class="control-label">Password</label>
+                <input type="password" class="form-control" asp-for="AspNetUsers.PasswordHash" id="password" required>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Confirm Password</label>
+                <input type="password" class="form-control" asp-for="AspNetUsers.PasswordHash" id="confirm_password" required>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+<script>
+    var password = document.getElementById("password")
+        , confirm_password = document.getElementById("confirm_password");
+
+    function validatePassword() {
+        if (password.value != confirm_password.value) {
+            confirm_password.setCustomValidity("Passwords Don't Match");
+        } else {
+            confirm_password.setCustomValidity('');
+        }
+    }
+
+    password.onchange = validatePassword;
+    confirm_password.onkeyup = validatePassword;
+</script>
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

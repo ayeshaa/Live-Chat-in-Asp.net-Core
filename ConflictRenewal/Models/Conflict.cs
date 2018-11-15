@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ConflictRenewal.Models
 {
@@ -46,7 +45,13 @@ namespace ConflictRenewal.Models
 
         [Display(Name = "Most recent journal")]
         [DataType(DataType.Date)]
-        public DateTime MostrecentjournalDate { get; set; }
+        public DateTime? MostrecentjournalDate { get; set; }
+
+        [Display(Name = "Email Id")]
+        public string EmailID { get; set; }
+
+        [NotMapped]
+        public string AdminRole { get; set; }
 
         public List<Journal> Journals { get; set; }
     }

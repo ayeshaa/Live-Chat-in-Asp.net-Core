@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using ConflictRenewal.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace ConflictRenewal.Data
 {
@@ -16,4 +14,5 @@ namespace ConflictRenewal.Data
         public DbSet<ConflictRenewal.Models.Conflict> Conflict { get; set; }
         public DbSet<ConflictRenewal.Models.Journal> Journal { get; set; }
     }
+
 }
