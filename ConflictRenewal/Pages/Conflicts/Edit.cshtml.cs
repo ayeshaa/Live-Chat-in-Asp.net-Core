@@ -47,7 +47,8 @@ namespace ConflictRenewal.Pages.Conflicts
             {
                 return Page();
             }
-
+            Conflict.EmailID = User.Identity.Name;
+            Conflict.MostrecentjournalDate = DateTime.Now.ToUniversalTime();
             _context.Attach(Conflict).State = EntityState.Modified;
 
             try

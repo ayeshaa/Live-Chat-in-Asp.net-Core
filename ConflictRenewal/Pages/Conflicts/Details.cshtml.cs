@@ -26,6 +26,8 @@ namespace ConflictRenewal.Pages.Conflicts
 
         public RoleEnum rollEnum { get; set; }
 
+        public string Isadmin { get; set; }
+
         public Conflict Conflict { get; set; }
 
         [BindProperty]
@@ -59,6 +61,7 @@ namespace ConflictRenewal.Pages.Conflicts
             foreach (var item in Conflict.Journals)
             {
                 item.UserRole = loginuserroletext.Name;
+                Isadmin = loginuserroletext.Name;
             }
 
             if (Conflict == null)

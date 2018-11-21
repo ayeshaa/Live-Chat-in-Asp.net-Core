@@ -53,6 +53,9 @@ namespace ConflictRenewal.Models
         [NotMapped]
         public string AdminRole { get; set; }
 
+        [NotMapped]
+        public bool ConflictStatus { get; set; }
+
         public List<Journal> Journals { get; set; }
     }
 }

@@ -44,6 +44,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Conflictview.Conflict[0].MostrecentjournalDate)@*Most recent journal*@
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Conflictview.Conflict[0].ConflictStatus)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -80,6 +83,16 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.MostrecentjournalDate)
+                </td>
+                <td>
+                    @if (item.ConflictStatus == true)
+                    {
+                        <label>Resolved</label>
+                    }
+                    else
+                    {
+                        <label>Unresolved</label>
+                    }
                 </td>
                 <td>
                     @*<a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |*@

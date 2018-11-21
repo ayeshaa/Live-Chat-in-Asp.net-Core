@@ -41,6 +41,7 @@ namespace ConflictRenewal.Pages.Conflicts
             foreach (var item in conflict.Conflict)
             {
                 item.MostrecentjournalDate = item.Journals.Where(a => a.ConflictId == item.Id).OrderByDescending(a => a.JournalDate).Select(a => (DateTime?) a.JournalDate).FirstOrDefault();
+                item.ConflictStatus = item.Journals.Where(a => a.ConflictId == item.Id).Select(a => a.ConflictStatus).FirstOrDefault();
                 item.AdminRole = roletext.Name;
                 if (item.AdminRole == RoleEnum.Admin.ToString())
                 {

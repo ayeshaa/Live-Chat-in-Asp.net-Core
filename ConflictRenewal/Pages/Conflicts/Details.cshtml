@@ -12,6 +12,7 @@
 <div>
     <h4>Conflict</h4>
     <hr />
+    
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Conflict.ConflictDate)
@@ -107,7 +108,7 @@
                                 <a asp-route-id="@item.Id" class="btn btn-outline-info click" asp-page-handler="Delete">Delete</a>
                             </td>
                         }
-                       
+
                     </tr>
                 }
             </table>
@@ -126,11 +127,19 @@
                         <input asp-for="journal.JournalDate" class="form-control" />
                         <span asp-validation-for="journal.JournalDate" class="text-danger"></span>
                     </div>*@
+
                 <div class="form-group">
                     <label asp-for="journal.JournalContent" class="control-label"></label>
                     <textarea id="textarea" asp-for="journal.JournalContent" class="form-control focus" rows="6"></textarea>
                     <span asp-validation-for="journal.JournalContent" class="text-danger"></span>
                 </div>
+                @if (Model.Isadmin == RoleEnum.User.ToString()) { 
+                <div class="form-group">
+                    <label asp-for="journal.ConflictStatus" class="control-label"></label>
+                    <input asp-for="journal.ConflictStatus" type="checkbox" />
+                    <span asp-validation-for="journal.ConflictStatus" class="text-danger"></span>
+                </div>
+                }
                 <div class="form-group">
                     @if (Model.journal.Id == 0)
                     {
