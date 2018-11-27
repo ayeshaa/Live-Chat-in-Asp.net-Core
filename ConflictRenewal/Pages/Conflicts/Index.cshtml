@@ -85,13 +85,27 @@
                     @Html.DisplayFor(modelItem => item.MostrecentjournalDate)
                 </td>
                 <td>
-                    @if (item.ConflictStatus == true)
+                    @if (Model.Conflictview.isAdmin == true)
                     {
-                        <label>Resolved</label>
+                        @if (item.ConflictStatus == true)
+                        {
+                            <label>Resolved</label>
+                        }
+                        else
+                        {
+                            <label>Action Required</label>
+                        }
                     }
                     else
                     {
-                        <label>Unresolved</label>
+                        @if (item.ConflictStatus == true)
+                        {
+                            <label>Resolved</label>
+                        }
+                        else
+                        {
+                            <label>Unresolved</label>
+                        }
                     }
                 </td>
                 <td>

@@ -61,9 +61,8 @@ namespace ConflictRenewal.Pages.Conflicts
             foreach (var item in Conflict.Journals)
             {
                 item.UserRole = loginuserroletext.Name;
-                Isadmin = loginuserroletext.Name;
             }
-
+            Isadmin = loginuserroletext.Name;
             if (Conflict == null)
             {
                 return NotFound();
@@ -85,6 +84,11 @@ namespace ConflictRenewal.Pages.Conflicts
             journal = await _context.Journal
                .AsNoTracking()
                .FirstOrDefaultAsync(m => m.Id == id);
+
+            var loginuser = _context.Users.Where(a => a.UserName == User.Identity.Name).FirstOrDefault();
+            var loginuserrole = _context.UserRoles.Where(a => a.UserId == loginuser.Id).FirstOrDefault();
+            var loginuserroletext = _context.Roles.Where(a => a.Id == loginuserrole.RoleId).FirstOrDefault();
+            Isadmin = loginuserroletext.Name;
 
             if (journal == null)
             {
@@ -150,7 +154,6 @@ namespace ConflictRenewal.Pages.Conflicts
             _context.Journal.Add(journal);
             await _context.SaveChangesAsync();
 
-            // return RedirectToPage("./Index");
             return RedirectToPage("/Conflicts/Details", new { id = ConId });
         }
 
