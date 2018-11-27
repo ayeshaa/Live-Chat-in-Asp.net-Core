@@ -27,6 +27,7 @@ namespace ConflictRenewal.Models
         [NotMapped]
         public string UserRole { get; set; }
 
+        [Display(Name = "Conflict Status")]
         public bool ConflictStatus { get; set; }
 
         public int StatusIdByRole { get; set; }
