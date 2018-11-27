@@ -56,6 +56,9 @@ namespace ConflictRenewal.Models
         [NotMapped]
         public bool ConflictStatus { get; set; }
 
+        [NotMapped]
+        public string CreatedBy { get; set; }
+
         public List<Journal> Journals { get; set; }
     }
 }

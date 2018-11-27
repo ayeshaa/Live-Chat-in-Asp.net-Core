@@ -93,7 +93,7 @@
                         }
                         else
                         {
-                            <label>Action Required</label>
+                            <label>Unresolved</label>
                         }
                     }
                     else
@@ -104,7 +104,14 @@
                         }
                         else
                         {
-                            <label>Unresolved</label>
+                            @if (Model.IsAdminConflict == true && item.ConflictStatus == false)
+                            {
+                                <label>Action Required</label>}
+                            else
+                            {
+                                <label>Unresolved</label>
+                            }
+
                         }
                     }
                 </td>

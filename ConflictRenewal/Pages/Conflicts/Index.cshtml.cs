@@ -18,6 +18,8 @@ namespace ConflictRenewal.Pages.Conflicts
             _context = context;
         }
 
+        public bool IsAdminConflict { get; set; }
+
         public RoleEnum rollEnum { get; set; }
 
         public ConflictViewModel Conflictview { get; set; }
@@ -39,8 +41,17 @@ namespace ConflictRenewal.Pages.Conflicts
             }
             foreach (var item in conflict.Conflict)
             {
-                item.MostrecentjournalDate = item.Journals.Where(a => a.ConflictId == item.Id).OrderByDescending(a => a.JournalDate).Select(a => (DateTime?) a.JournalDate).FirstOrDefault();
+                item.MostrecentjournalDate = item.Journals.Where(a => a.ConflictId == item.Id).OrderByDescending(a => a.JournalDate).Select(a => (DateTime?)a.JournalDate).FirstOrDefault();
                 item.ConflictStatus = item.Journals.Where(a => a.JournalDate == item.MostrecentjournalDate).Select(a => a.ConflictStatus).FirstOrDefault();
+                item.CreatedBy = item.Journals.Where(a => a.JournalDate == item.MostrecentjournalDate).Select(a => a.createdBy).FirstOrDefault();
+                if (item.CreatedBy != User.Identity.Name)
+                {
+                    IsAdminConflict = true;
+                }
+                else
+                {
+                    IsAdminConflict = false;
+                }
                 item.AdminRole = roletext.Name;
                 if (item.AdminRole == RoleEnum.Admin.ToString())
                 {

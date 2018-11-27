@@ -104,6 +104,7 @@ namespace ConflictRenewal.Pages.Conflicts
                 return Page();
             }
             journal.JournalDate = DateTime.Now.ToUniversalTime();
+            journal.createdBy = User.Identity.Name;
             _context.Attach(journal).State = EntityState.Modified;
 
             try
