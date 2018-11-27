@@ -54,7 +54,7 @@ namespace ConflictRenewal.Models
         public string AdminRole { get; set; }
 
         [NotMapped]
-        public bool ConflictStatus { get; set; }
+        public int ConflictStatus { get; set; }
 
         [NotMapped]
         public string CreatedBy { get; set; }

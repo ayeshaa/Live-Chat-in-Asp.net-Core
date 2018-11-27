@@ -84,34 +84,31 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.MostrecentjournalDate)
                 </td>
-                <td>
+                <td>                   
                     @if (Model.Conflictview.isAdmin == true)
                     {
-                        @if (item.ConflictStatus == true)
+                        @if (item.ConflictStatus == Convert.ToInt32(ConflictStatusEnum.Resolved))
                         {
                             <label>Resolved</label>
                         }
-                        else
+                        else 
                         {
-                            <label>Unresolved</label>
-                        }
+                            <label>Action Required</label>
+                        }                        
                     }
                     else
                     {
-                        @if (item.ConflictStatus == true)
+                        @if (item.ConflictStatus == Convert.ToInt32(ConflictStatusEnum.Resolved))
                         {
                             <label>Resolved</label>
                         }
-                        else
+                        else if (item.ConflictStatus == Convert.ToInt32(ConflictStatusEnum.Unresolved))
                         {
-                            @if (Model.IsAdminConflict == true && item.ConflictStatus == false)
-                            {
-                                <label>Action Required</label>}
-                            else
-                            {
-                                <label>Unresolved</label>
-                            }
-
+                            <label>Unresolved</label>
+                        }
+                        else if (item.ConflictStatus == Convert.ToInt32(ConflictStatusEnum.ActionRequired))
+                        {
+                            <label>Action Required</label>
                         }
                     }
                 </td>

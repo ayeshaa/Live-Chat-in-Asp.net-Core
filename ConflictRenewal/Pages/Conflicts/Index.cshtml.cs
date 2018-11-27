@@ -22,6 +22,8 @@ namespace ConflictRenewal.Pages.Conflicts
 
         public RoleEnum rollEnum { get; set; }
 
+        public ConflictStatusEnum ConflictStatusEnum { get; set; }
+
         public ConflictViewModel Conflictview { get; set; }
 
         ConflictViewModel conflict = new ConflictViewModel();
@@ -42,16 +44,16 @@ namespace ConflictRenewal.Pages.Conflicts
             foreach (var item in conflict.Conflict)
             {
                 item.MostrecentjournalDate = item.Journals.Where(a => a.ConflictId == item.Id).OrderByDescending(a => a.JournalDate).Select(a => (DateTime?)a.JournalDate).FirstOrDefault();
-                item.ConflictStatus = item.Journals.Where(a => a.JournalDate == item.MostrecentjournalDate).Select(a => a.ConflictStatus).FirstOrDefault();
-                item.CreatedBy = item.Journals.Where(a => a.JournalDate == item.MostrecentjournalDate).Select(a => a.createdBy).FirstOrDefault();
-                if (item.CreatedBy != User.Identity.Name)
-                {
-                    IsAdminConflict = true;
-                }
-                else
-                {
-                    IsAdminConflict = false;
-                }
+                item.ConflictStatus = item.Journals.Where(a => a.JournalDate == item.MostrecentjournalDate).Select(a => a.StatusIdByRole).FirstOrDefault();
+                //item.CreatedBy = item.Journals.Where(a => a.JournalDate == item.MostrecentjournalDate).Select(a => a.createdBy).FirstOrDefault();
+                //if (item.CreatedBy != User.Identity.Name)
+                //{
+                //    IsAdminConflict = true;
+                //}
+                //else
+                //{
+                //    IsAdminConflict = false;
+                //}
                 item.AdminRole = roletext.Name;
                 if (item.AdminRole == RoleEnum.Admin.ToString())
                 {

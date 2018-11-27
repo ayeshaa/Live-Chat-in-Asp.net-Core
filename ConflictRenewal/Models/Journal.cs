@@ -29,6 +29,8 @@ namespace ConflictRenewal.Models
 
         public bool ConflictStatus { get; set; }
 
+        public int StatusIdByRole { get; set; }
+
         public Conflict Conflict { get; set; }
     }
 }

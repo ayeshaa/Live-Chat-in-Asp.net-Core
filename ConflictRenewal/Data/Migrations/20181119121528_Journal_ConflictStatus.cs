@@ -7,7 +7,7 @@ namespace ConflictRenewal.Data.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<bool>(
+            migrationBuilder.AddColumn<int>(
                 name: "ConflictStatus",
                 table: "Journal",
                 nullable: false,

@@ -103,6 +103,21 @@ namespace ConflictRenewal.Pages.Conflicts
             {
                 return Page();
             }
+            var loginuser = _context.Users.Where(a => a.UserName == User.Identity.Name).FirstOrDefault();
+            var loginuserrole = _context.UserRoles.Where(a => a.UserId == loginuser.Id).FirstOrDefault();
+            var loginuserroletext = _context.Roles.Where(a => a.Id == loginuserrole.RoleId).FirstOrDefault();
+            if (loginuserroletext.ToString() == RoleEnum.Admin.ToString())
+            {
+                journal.StatusIdByRole = 3;
+            }
+            if (journal.ConflictStatus == true)
+            {
+                journal.StatusIdByRole = 1;
+            }
+            else if (loginuserroletext.ToString() != RoleEnum.Admin.ToString())
+            {
+                journal.StatusIdByRole = 2;
+            }
             journal.JournalDate = DateTime.Now.ToUniversalTime();
             journal.createdBy = User.Identity.Name;
             _context.Attach(journal).State = EntityState.Modified;
@@ -147,11 +162,24 @@ namespace ConflictRenewal.Pages.Conflicts
             {
                 return Page();
             }
+            var loginuser = _context.Users.Where(a => a.UserName == User.Identity.Name).FirstOrDefault();
+            var loginuserrole = _context.UserRoles.Where(a => a.UserId == loginuser.Id).FirstOrDefault();
+            var loginuserroletext = _context.Roles.Where(a => a.Id == loginuserrole.RoleId).FirstOrDefault();
+            if (loginuserroletext.ToString() == RoleEnum.Admin.ToString())
+            {
+                journal.StatusIdByRole = 3;
+            }
             journal.ConflictId = ConId;
             journal.createdBy = User.Identity.Name;
             journal.JournalDate = DateTime.Now.ToUniversalTime();
-            journal.createdBy = User.Identity.Name;
-
+            if (journal.ConflictStatus == true)
+            {
+                journal.StatusIdByRole = 1;
+            }
+            else if(loginuserroletext.ToString() != RoleEnum.Admin.ToString())
+            {
+                journal.StatusIdByRole = 2;
+            }
             _context.Journal.Add(journal);
             await _context.SaveChangesAsync();
 
