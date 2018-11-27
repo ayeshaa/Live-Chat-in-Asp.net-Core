@@ -42,7 +42,7 @@
                 @Html.DisplayNameFor(model => model.Conflictview.Conflict[0].Question6)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Conflictview.Conflict[0].MostrecentjournalDate)@*Most recent journal*@
+                @Html.DisplayNameFor(model => model.Conflictview.Conflict[0].MostrecentjournalDate)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Conflictview.Conflict[0].ConflictStatus)
@@ -84,17 +84,21 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.MostrecentjournalDate)
                 </td>
-                <td>                   
+                <td>                    
                     @if (Model.Conflictview.isAdmin == true)
                     {
-                        @if (item.ConflictStatus == Convert.ToInt32(ConflictStatusEnum.Resolved))
+                        @if (item.ConflictStatus == 0)
+                        {
+                            <label>Unresolved</label>
+                        }
+                        if (item.ConflictStatus == Convert.ToInt32(ConflictStatusEnum.Resolved))
                         {
                             <label>Resolved</label>
                         }
-                        else 
+                        else if(item.ConflictStatus != 0)
                         {
                             <label>Action Required</label>
-                        }                        
+                        }
                     }
                     else
                     {
@@ -110,12 +114,14 @@
                         {
                             <label>Action Required</label>
                         }
+                        else
+                        {
+                            <label>Unresolved</label>
+                        }
                     }
                 </td>
-                <td>
-                    @*<a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |*@
-                    <a asp-page="./Details" asp-route-id="@item.Id" class="btn btn-primary">View</a>
-                    @*|<a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>*@
+                <td>                    
+                    <a asp-page="./Details" asp-route-id="@item.Id" class="btn btn-primary">View</a>                    
                 </td>
             </tr>
         }
