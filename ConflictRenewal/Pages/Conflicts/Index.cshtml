@@ -84,7 +84,7 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.MostrecentjournalDate)
                 </td>
-                <td>                    
+                <td>
                     @if (Model.Conflictview.isAdmin == true)
                     {
                         @if (item.ConflictStatus == 0)
@@ -95,9 +95,13 @@
                         {
                             <label>Resolved</label>
                         }
-                        else if(item.ConflictStatus != 0)
+                        else if (item.ConflictStatus == Convert.ToInt32(ConflictStatusEnum.Unresolved))
                         {
-                            <label>Action Required</label>
+                            <label>Unresolved</label>
+                        }
+                        else if (item.ConflictStatus == Convert.ToInt32(ConflictStatusEnum.ActionRequired))
+                        {
+                            <label>Unresolved</label>
                         }
                     }
                     else
@@ -120,8 +124,10 @@
                         }
                     }
                 </td>
-                <td>                    
-                    <a asp-page="./Details" asp-route-id="@item.Id" class="btn btn-primary">View</a>                    
+                <td>
+                    @*<a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |*@
+                    <a asp-page="./Details" asp-route-id="@item.Id" class="btn btn-primary">View</a>
+                    @*|<a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>*@
                 </td>
             </tr>
         }
