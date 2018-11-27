@@ -135,8 +135,8 @@
                 </div>
                 @if (Model.Isadmin == RoleEnum.User.ToString()) { 
                 <div class="form-group">
-                    <label asp-for="journal.ConflictStatus" class="control-label"></label>
                     <input asp-for="journal.ConflictStatus" type="checkbox" />
+                    <label asp-for="journal.ConflictStatus" class="control-label">This conflict has been permanently resolved</label>
                     <span asp-validation-for="journal.ConflictStatus" class="text-danger"></span>
                 </div>
                 }
