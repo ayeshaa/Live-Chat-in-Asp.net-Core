@@ -4,6 +4,7 @@
 @using ConflictRenewal.Models
 @{
     ViewData["Title"] = "Index";
+  //  Layout = null;
 }
 
 <h2>Index</h2>
@@ -11,7 +12,7 @@
 <p>
     <a asp-page="Create" class="btn btn-primary">Create New</a>
 </p>
-<table class="table">
+<table class="table table-responsive">
     <thead>
         <tr>
             @if (Model.Conflictview.isAdmin == true)
@@ -127,9 +128,138 @@
                 <td>
                     @*<a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |*@
                     <a asp-page="./Details" asp-route-id="@item.Id" class="btn btn-primary">View</a>
+                    <a onClick="GetAuditHistory(@item.Id)" class="btn btn-success">Audit History</a>
                     @*|<a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>*@
                 </td>
             </tr>
         }
     </tbody>
 </table>
+
+<style>
+    .modal-backdrop.in {
+        filter: alpha(opacity=50);
+        opacity: 0 !important;
+    }
+</style>
+
+
+<!-- Modal HTML -->
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog" style="max-width:80%; width:80%">
+        <div class="modal-content">
+            <div class="modal-header" role="dialog">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Audit history</h4>
+            </div>
+            <div class="modal-body" style="max-height:500px;overflow-y: auto;">
+                <div id="audit"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"
+      rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+
+@*<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>*@
+
+<script>
+
+
+    function GetAuditHistory(recordID) {
+        $("#audit").html("");
+
+        var AuditDisplay = "<table class='table table-condensed' cellpadding='5'>"; // should be done with cleaner dom object construction ... but hey, its an article, not production :)
+        $.ajax({
+            type: "GET",
+            url: "/Conflicts/AuditTrail/",
+            data: { id: recordID, },
+            contentType: "application/json",
+            dataType: "json",
+            success: function (AuditTrail) {
+                debugger;
+                if (AuditTrail != "" || AuditTrail != null) {
+                   
+                    for (var i = 0; i < AuditTrail.length; i++) {
+                        AuditDisplay = AuditDisplay + "<tr class='active'><td colspan='2'>Event date: " + AuditTrail[i].dateTimeStamp + "</td>";
+                        AuditDisplay = AuditDisplay + "<td>Action type: " + AuditTrail[i].auditActionTypeName + "</td></tr>";
+                        AuditDisplay = AuditDisplay + "<tr class='text-warning'><td>Field name</td><td>Before change</td><td>After change</td></tr>";
+                        if (AuditTrail[i].changes != null && AuditTrail[i].changes.length > 0) {
+                            for (var j = 0; j < AuditTrail[i].changes.length; j++) {
+                                AuditDisplay = AuditDisplay + "<tr>";
+                                AuditDisplay = AuditDisplay + "<td>" + AuditTrail[i].changes[j].fieldName + "</td>";
+                                AuditDisplay = AuditDisplay + "<td>" + AuditTrail[i].changes[j].valueAfter + "</td>";
+                                AuditDisplay = AuditDisplay + "<td>" + AuditTrail[i].changes[j].valueAfter + "</td>";
+                                AuditDisplay = AuditDisplay + "</tr>";
+                            }
+                        }
+                    }
+
+                    AuditDisplay = AuditDisplay + "</table>";
+                }
+                if (AuditTrail.length == 0) {
+                    AuditDisplay = "<p>No history found!!</p>";
+                }
+               
+                    $("#audit").html(AuditDisplay);
+
+                //jQuery.noConflict();
+                //var jq = jQuery.noConflict();
+                debugger;
+                $("#myModal").modal('show');
+            },
+            failure: function (response) {
+                alert(response);
+            }
+        });
+
+
+        //$("#audit").html("");
+        //var AuditDisplay = "<table class='table table-condensed' cellpadding='5'>"; // should be done with cleaner dom object construction ... but hey, its an article, not production :)
+        //$.getJSON("/Conflicts/AuditTrail/" + recordID, function (AuditTrail) {
+
+        //for (var i = 0; i < AuditTrail.length; i++) {
+        //    AuditDisplay = AuditDisplay + "<tr class='active'><td colspan='2'>Event date: " + AuditTrail[i].DateTimeStamp + "</td>";
+        //    AuditDisplay = AuditDisplay + "<td>Action type: " + AuditTrail[i].AuditActionTypeName + "</td></tr>";
+        //    AuditDisplay = AuditDisplay + "<tr class='text-warning'><td>Field name</td><td>Before change</td><td>After change</td></tr>";
+        //    for (var j = 0; j < AuditTrail[i].Changes.length; j++) {
+        //        AuditDisplay = AuditDisplay + "<tr>";
+        //        AuditDisplay = AuditDisplay + "<td>" + AuditTrail[i].Changes[j].FieldName + "</td>";
+        //        AuditDisplay = AuditDisplay + "<td>" + AuditTrail[i].Changes[j].ValueBefore + "</td>";
+        //        AuditDisplay = AuditDisplay + "<td>" + AuditTrail[i].Changes[j].ValueAfter + "</td>";
+        //        AuditDisplay = AuditDisplay + "</tr>";
+        //    }
+        //}
+        //AuditDisplay = AuditDisplay + "</table>" >
+        //    $("#audit").html(AuditDisplay);
+        //$("#myModal").modal('show');
+
+
+        //});
+    }
+
+    function DeleteRecord(recordID) {
+        $.get("/home/delete/" + recordID); // should have return on success etc
+        $('#' + recordID).remove();
+    }
+
+    function ShowDeleted() {
+        window.location.assign('/?ShowDeleted=True');
+    }
+
+    function NewRecord() {
+        window.location.assign('/home/create');
+    }
+    //});
+
+</script>
+

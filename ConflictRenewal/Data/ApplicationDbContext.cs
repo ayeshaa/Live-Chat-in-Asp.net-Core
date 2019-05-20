@@ -7,12 +7,17 @@ namespace ConflictRenewal.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {
+        public ApplicationDbContext()
+        {
+        }
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
         }
-        public DbSet<ConflictRenewal.Models.Conflict> Conflict { get; set; }
-        public DbSet<ConflictRenewal.Models.Journal> Journal { get; set; }
+        public DbSet<Conflict> Conflict { get; set; }
+        public DbSet<Journal> Journal { get; set; }
+        public DbSet<AuditTrailTable> AuditTrailTable { get; set; }
     }
 
 }

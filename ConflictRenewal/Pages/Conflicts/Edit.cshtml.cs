@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using ConflictRenewal.Data;
 using ConflictRenewal.Models;
 using Microsoft.AspNetCore.Authorization;
+using ConflictRenewal.ViewModel;
 
 namespace ConflictRenewal.Pages.Conflicts
 {
@@ -41,7 +42,7 @@ namespace ConflictRenewal.Pages.Conflicts
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync()
+        public IActionResult OnPost()
         {
             if (!ModelState.IsValid)
             {
@@ -49,11 +50,16 @@ namespace ConflictRenewal.Pages.Conflicts
             }
             Conflict.EmailID = User.Identity.Name;
             Conflict.MostrecentjournalDate = DateTime.Now.ToUniversalTime();
-            _context.Attach(Conflict).State = EntityState.Modified;
+            //_context.Attach(Conflict).State = EntityState.Modified;
+
+            //SampleDataModel SD = new SampleDataModel();
+            //return View(SD.GetData(id));
 
             try
             {
-                await _context.SaveChangesAsync();
+                //await _context.SaveChangesAsync();
+                AuditTrail SD = new AuditTrail(_context);
+                SD.UpdateRecord(Conflict);
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -74,5 +80,6 @@ namespace ConflictRenewal.Pages.Conflicts
         {
             return _context.Conflict.Any(e => e.Id == id);
         }
+       
     }
 }

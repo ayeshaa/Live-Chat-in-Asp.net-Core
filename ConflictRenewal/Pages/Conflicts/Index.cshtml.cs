@@ -5,6 +5,8 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using ConflictRenewal.ViewModel;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ConflictRenewal.Pages.Conflicts
 {
@@ -67,6 +69,16 @@ namespace ConflictRenewal.Pages.Conflicts
             conflict.Conflict = conflict.Conflict.OrderByDescending(a => a.MostrecentjournalDate).ToList();
 
             Conflictview = conflict;
+        }
+        //public JsonResult OnGetFilter(BooksFilterBy filterBy)
+        //{
+        //    return new JsonResult(_filterService.GetFilterDropDownValues(filterBy));
+        //}
+        public JsonResult Audit(int id)
+        {
+            AuditTrail SD = new AuditTrail(_context);
+            var AuditTrail = SD.GetAudit(id);
+            return new JsonResult(AuditTrail);
         }
     }
 }

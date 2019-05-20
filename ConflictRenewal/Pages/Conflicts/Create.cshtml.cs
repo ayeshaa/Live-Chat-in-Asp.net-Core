@@ -8,19 +8,21 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using ConflictRenewal.Data;
 using ConflictRenewal.Models;
 using Microsoft.AspNetCore.Authorization;
+using ConflictRenewal.ViewModel;
 
 namespace ConflictRenewal.Pages.Conflicts
 {
     [Authorize]
     public class CreateModel : PageModel
     {
-        private readonly ConflictRenewal.Data.ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public CreateModel(ConflictRenewal.Data.ApplicationDbContext context)
+        public CreateModel(ApplicationDbContext context)
         {
             _context = context;
             Conflict = new Conflict();
             Conflict.ConflictDate = DateTime.Now;
+            //SD = new AuditTrail();
         }
 
         public IActionResult OnGet()
@@ -31,18 +33,25 @@ namespace ConflictRenewal.Pages.Conflicts
         [BindProperty]
         public Conflict Conflict { get; set; }
 
-        public async Task<IActionResult> OnPostAsync()
+        public AuditTrail SD { get; set; }
+
+        public IActionResult OnPost()
         {
             if (!ModelState.IsValid)
             {
                 return Page();
             }
             Conflict.EmailID = User.Identity.Name;
-            Conflict.ConflictDate= DateTime.Now.ToUniversalTime();
+            Conflict.ConflictDate = DateTime.Now.ToUniversalTime();
             Conflict.MostrecentjournalDate = DateTime.Now.ToUniversalTime();
 
-            _context.Conflict.Add(Conflict);
-            await _context.SaveChangesAsync();
+            //_context.Conflict.Add(Conflict);
+            //await _context.SaveChangesAsync();
+
+            AuditTrail SD = new AuditTrail(_context);
+            SD.CreateRecord(Conflict);
+
+
 
             return RedirectToPage("./Index");
         }
