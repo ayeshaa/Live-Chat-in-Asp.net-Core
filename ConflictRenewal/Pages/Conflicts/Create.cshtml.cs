@@ -50,9 +50,7 @@ namespace ConflictRenewal.Pages.Conflicts
 
             AuditTrail SD = new AuditTrail(_context);
             SD.CreateRecord(Conflict);
-
-
-
+            
             return RedirectToPage("./Index");
         }
     }

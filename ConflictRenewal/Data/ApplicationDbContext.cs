@@ -17,6 +17,7 @@ namespace ConflictRenewal.Data
         }
         public DbSet<Conflict> Conflict { get; set; }
         public DbSet<Journal> Journal { get; set; }
+        public DbSet<Conversations> Conversations { get; set; }
         public DbSet<AuditTrailTable> AuditTrailTable { get; set; }
     }
 

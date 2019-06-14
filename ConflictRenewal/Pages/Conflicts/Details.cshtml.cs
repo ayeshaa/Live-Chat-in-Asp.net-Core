@@ -67,6 +67,17 @@ namespace ConflictRenewal.Pages.Conflicts
             {
                 return NotFound();
             }
+
+            //Some features to enable chat
+            var Coach = _context.Users.Where(x => x.Email == "bill@gmail.com").FirstOrDefault();
+            string cid = Coach.Id;
+            var UserName = User.Identity.Name;
+            var CurrentUser = _context.Users.Where(x => x.Email == UserName).FirstOrDefault();
+            var UserId = CurrentUser.Id;
+            ViewData["ActiveUserId"] = cid;
+            ViewData["ActiveUserName"] = Coach.Email;
+            ViewData["UserId"] = UserId;
+            ViewData["CurrentUserName"] = User.Identity.Name;
             return Page();
         }
 
@@ -89,6 +100,7 @@ namespace ConflictRenewal.Pages.Conflicts
             var loginuserrole = _context.UserRoles.Where(a => a.UserId == loginuser.Id).FirstOrDefault();
             var loginuserroletext = _context.Roles.Where(a => a.Id == loginuserrole.RoleId).FirstOrDefault();
             Isadmin = loginuserroletext.Name;
+            
 
             if (journal == null)
             {

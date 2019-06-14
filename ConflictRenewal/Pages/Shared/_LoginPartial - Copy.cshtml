@@ -7,53 +7,52 @@
 
 @if (SignInManager.IsSignedIn(User))
 {
-<form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })" method="post" id="logoutForm" class="form-inline" style="float: right;">
-    @if (User.IsInRole("Admin"))
-    {
-        <script src="~/js/LiveChatScript.js"></script>
-        <div class="profile-area shop-badge badge-icons hidden-xs">
-            <div id="divLogin">
+    <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })" method="post" id="logoutForm" class="form-inline" style="float: right;">
+        @if (User.IsInRole("Admin"))
+        {
+            <div class="profile-area shop-badge badge-icons hidden-xs">
+                <div id="divLogin">
 
-                <a href="#" id="showChats" onshow="" onclick="GetLatestChat()" role="button" aria-haspopup="true" aria-expanded="false" style="color:#fff">
-                    <span>
-                        <i class="glyphicon glyphicon-envelope"></i>
-                        <strong>
-                            Messages
-                            <i class="glyphicon glyphicon-chevron-down"></i>&nbsp;&nbsp;
-                        </strong>
-                        &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
-                    </span>
-                    <div id="NotificationDiv"></div>
-                </a>
-                <div class="badge-open">
-                    <ul class="list-unstyled mCustomScrollbar _mCS_1 mCS-autoHide list-chat" data-mcs-theme="minimal-dark" style="position: relative; overflow: visible;">
+                    <a href="#" id="showChats" onshow="" onclick="GetLatestChat()" role="button" aria-haspopup="true" aria-expanded="false" style="color:#fff">
+                        <span>
+                            <i class="glyphicon glyphicon-envelope"></i>
+                            <strong>
+                                Messages
+                                <i class="glyphicon glyphicon-chevron-down"></i>&nbsp;&nbsp;
+                            </strong>
+                            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+                        </span>
+                        <div id="NotificationDiv"></div>
+                    </a>
+                    <div class="badge-open">
+                        <ul class="list-unstyled mCustomScrollbar _mCS_1 mCS-autoHide list-chat" data-mcs-theme="minimal-dark" style="position: relative; overflow: visible;">
 
-                        <div id="mCSB_1" class="mCustomScrollBox mCS-minimal-dark mCSB_vertical mCSB_outside" tabindex="0">
-                            <div id="mCSB_1_container" class="mCSB_container" style="position:relative; top:0; left:0;" dir="ltr">
-                                <div class="dropdown-menu panel panel-default" id="chatBoxArea" style="display:block">
-                                    <div class="panel-heading" style="overflow:hidden; padding: 5px 15px;">
-                                        <a href="#" class="pull-left">Recent messages</a>
-                                        <a href="/Chat/Index" class="pull-right">New Message</a>
-                                    </div>
-                                    <div class="panel-body" id="LatestChatDiv" style="padding: 5px 0px 0px 8px;">
+                            <div id="mCSB_1" class="mCustomScrollBox mCS-minimal-dark mCSB_vertical mCSB_outside" tabindex="0">
+                                <div id="mCSB_1_container" class="mCSB_container" style="position:relative; top:0; left:0;" dir="ltr">
+                                    <div class="dropdown-menu panel panel-default" id="chatBoxArea" style="display:block">
+                                        <div class="panel-heading" style="overflow:hidden; padding: 5px 15px;">
+                                            <a href="#" class="pull-left">Recent messages</a>
+                                            <a href="/Chat/Index" class="pull-right">New Message</a>
+                                        </div>
+                                        <div class="panel-body" id="LatestChatDiv" style="padding: 5px 0px 0px 8px;">
 
-                                    </div>
-                                    <div class="panel-footer" style="padding: 2px 15px;">
-                                        <a href="/Chat/Index" style="text-align:center">See all</a>
+                                        </div>
+                                        <div class="panel-footer" style="padding: 2px 15px;">
+                                            <a href="/Chat/Index" style="text-align:center">See all</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                    </ul>
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </div>
-    }
+        }
 
-    <a asp-area="Identity" asp-page="/Account/Manage/Index" style="color:#fff" title="Manage">Hello @UserManager.GetUserName(User)!</a>
-    <button type="submit" class="btn btn-link my-2 my-sm-0" style="color:#fff">Logout</button>
-</form>
+        <a asp-area="Identity" asp-page="/Account/Manage/Index" style="color:#fff" title="Manage">Hello @UserManager.GetUserName(User)!</a>
+        <button type="submit" class="btn btn-link my-2 my-sm-0" style="color:#fff">Logout</button>
+    </form>
 }
 else
 {

@@ -27,9 +27,19 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\Uploads\ProfileImage\Profileplaceholder.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="System.Web">
       <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Web.dll</HintPath>
     </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Pages\Shared\_LoginPartial - Copy.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
   </ItemGroup>
 
 </Project>

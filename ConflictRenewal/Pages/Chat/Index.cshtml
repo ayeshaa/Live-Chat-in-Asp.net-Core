@@ -1,0 +1,502 @@
+﻿@page
+@model ConflictRenewal.Pages.Chat.IndexModel
+@{
+    ViewData["Title"] = "Index";
+}
+<link href="~/css/Chat2StyleSheet.css" rel="stylesheet" />
+@*<script src="~/js/ChatScript.js"></script>*@
+
+@{
+    ViewBag.Title = "Chat";
+}
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc2/css/bootstrap-glyphicons.css" />
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="https://use.fontawesome.com/45e03a14ce.js"></script>
+<link href="~/Content/Chat2StyleSheet.css" rel="stylesheet" />
+
+<input type="hidden" id="LatestChatUserId" value="@ViewData["ActiveUserId"]" />
+<input type="hidden" id="LatestChatUserName" value="@ViewData["ActiveUserName"]" />
+<input type="hidden" id="profilepici" value="@ViewData["ActiveUserpic"]" />
+
+<div class="main_section">
+    <div class="" style="margin-bottom:30px; width:100% !important; padding:2px">
+        <div class="row chat_container">
+            <div class="col-md-3 chat_sidebar" style="padding:0px">
+                <div class="">
+                    <div id="custom-search-input">
+                        <div class="input-group col-md-12">
+                            <input type="text" id="searchInput" class="search-query form-control" onkeyup="myFunction()" placeholder="Conversation" />
+                            <button class="btn btn-danger" type="button">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="dropdown all_conversation">
+                        <button class="dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-weixin" aria-hidden="true"></i>
+                            Added Users
+                        </button>
+
+                    </div>
+                    <div class="member_list" id="AllUserDiv" style="min-height:450px">
+                        <ul class="list-unstyled" id="UserDiv" style="min-height: 450px;">
+                            @foreach (var item in Model.ConversationAddedUsers)
+                            {
+
+                                <li class="left clearfix">
+
+                                    <span style="display:none" id="ActiveUserId">@item.Id</span>
+                                    <span style="display:none" id="ActiveUserName">@item.UserName</span>
+                                    <span class="chat-img pull-left">
+                                        @if (item.ImageUrl == null || item.ImageUrl.Length < 1)
+                                        {
+
+                                            <img src="~/images/Profileplaceholder.png" alt="" class="img-circle">
+
+                                        }
+                                        else
+                                        {
+                                            <img src="~/Uploads/ProfileImage/@item.ImageUrl" alt="User Avatar" class="img-circle">
+                                        }
+                                    </span>
+                                    <div class="chat-body clearfix">
+                                        <div class="header_sec">
+                                            <strong class="primary-font">@item.UserName</strong>
+
+
+                                            @if (item.IsLogin == true)
+                                            {
+                                                <strong class="pull-right" style="color:forestgreen">
+                                                    Online
+                                                </strong>
+                                            }
+                                            else
+                                            {
+                                                <strong class="pull-right" style="color:gray">
+                                                    Offline
+                                                </strong>
+
+                                            }
+
+                                        </div>
+                                        <div class="contact_sec">
+                                            @if (item.count > 0)
+                                            {
+                                                <strong class="primary-font"></strong> <span class="badge pull-right">@item.count</span>
+                                            }
+
+                                        </div>
+                                    </div>
+                                </li>
+
+
+                            }
+
+
+
+                            @*<partial name="_ProductViewDataPartial" for="@Model" view-data="ViewData">*@
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!--chat_sidebar-->
+
+
+            <div class="col-md-9 message_section" style="padding:0px">
+                <div class="">
+                    <div class="new_message_head">
+                        <div class="pull-left">
+                            <button type="button" id="newMsg"><i class="fa fa-plus-square-o" aria-hidden="true"></i> New Message</button>
+                            <img src="~/images/30.gif" id="gif" class="pull-right" style="display: block; margin: 0 auto; visibility: hidden;">
+                        </div>
+                        <div class="pull-right">
+
+                        </div>
+                        <div class="pull-right">
+                            <input type="hidden" id="ActiveUserId" value="" />
+                            <button type="button" id="GetContactDeails" style="display:none" class="btn btn-success"><i class="glyphicon glyphicon-eye-open" aria-hidden="true"></i> Ready to Commit</button>
+                        </div>
+                    <div class="pull-right">
+
+                        </div>
+                    </div><!--new_message_head-->
+
+                    <div class="chat_area">
+                        <div class="row alert alert-success" id="alertDiv" style="display:none; padding-left:30px;">
+                            In chat with
+                        </div>
+                        <ul class="list-unstyled" id="discussionDiv" style="position: relative;">
+                            <input type="hidden" id="LatestChatUserId" value="@ViewBag.ActiveUserId" />
+                            <input type="hidden" id="LatestChatUserName" value="@ViewBag.ActiveUserName" />
+                            @*<input type="hidden" id="profilepici" value="@ViewBag.ActiveUserpic" />*@
+                        </ul>
+                        <ul class="list-unstyled">
+                            @*<li class="left clearfix">
+                                    <span class="chat-img1 pull-left">
+                                        <img src="https://lh6.googleusercontent.com/-y-MY2satK-E/AAAAAAAAAAI/AAAAAAAAAJU/ER_hFddBheQ/photo.jpg" alt="User Avatar" class="img-circle">
+                                    </span>
+                                    <div class="chat-body1 clearfix">
+                                        <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia.</p>
+                                        <div class="chat_time pull-right">09:40PM</div>
+                                    </div>
+                                </li>
+                                <li class="left clearfix admin_chat">
+                                    <span class="chat-img1 pull-right">
+                                        <img src="https://lh6.googleusercontent.com/-y-MY2satK-E/AAAAAAAAAAI/AAAAAAAAAJU/ER_hFddBheQ/photo.jpg" alt="User Avatar" class="img-circle">
+                                    </span>
+                                    <div class="chat-body1 clearfix">
+                                        <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia.</p>
+                                        <div class="chat_time pull-left">09:40PM</div>
+                                    </div>
+                                </li>*@
+
+                        </ul>
+                    </div><!--chat_area-->
+
+                    <form name="ChatForm" id="ChatForm" enctype="multipart/form-data">
+                        <div class="message_write">
+                            <input type="hidden" id="SelectedUserName" />
+                            <input type="hidden" id="SelectedUserId" />
+                            <input type="hidden" id="SelectedConnectionId" />
+                            <div id="NotSendError" style="display:none; color:red;">
+                            </div>
+                            @Html.Hidden("CurrentUserName", @User.Identity.Name)
+                            @Html.Hidden("CurrentUserId", @ViewData["UserId"])
+                            <textarea class="form-control" name="tn-input" id="btn-input" placeholder="Type your message here"></textarea>
+                            <div class="clearfix"></div>
+                            <div class="chat_bottom">
+
+                                <div class="col-md-9">
+                                    <input type="text" style="display:none;" name="ChatFileName" />
+                                    <input type="file" name="ImageFile" accept="image/*" id="ImageFile" style="display:none;" />
+
+                                    @*<ul class="pull-left" style="list-style-type: none;padding-left: 0px;">
+                <li style="float:left;padding-left:4px;width:52%">
+                    <a style="border: solid 2px #ee3733;color: #000;margin-top: 15px;font-size: 12px;" onclick="SendPhoto();" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Send image"><span class="fa fa-file-image-o fa-2x"></span></a>
+                </li>
+
+                <li class="pull-right" style="display:none" id="ImgpreviewLi">
+                    <img src="~/images/Icon/Bag.png" id="previewImg" class="img-thumbnail" style="height:35px; padding:0px;" />
+                </li>
+            </ul>*@
+
+                                </div>
+                                <button type="button" class="btn bt_bg btn-sm pull-right" id="btn-chat" value="Send">Send</button>
+                                @*<a href="javascript:void();" id="btn-chat" class="pull-right btn btn-default" style="width: 16%;border: solid 2px #ee3733;color: #000;padding: 10px 40px;margin-top: 15px;font-size: 12px;">
+                                    Send
+                                </a>*@
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div> <!--message_section-->
+        </div>
+    </div>
+</div>
+<div class="popupmessage" id="popupmessage">
+</div>
+<script>
+    $(document).ready(function () {
+        $('#newMsg').click(function () {
+            $('#message').focus();
+        });
+
+    });
+</script>
+
+<script>
+function myFunction() {
+    // Declare variables
+    var input, filter, ul, li, a, i;
+    input = document.getElementById('searchInput');
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("UserDiv");
+    li = ul.getElementsByTagName('li');
+
+    // Loop through all list items, and hide those who don't match the search query
+    for (i = 0; i < li.length; i++) {
+        a = li[i].getElementsByTagName("strong")[0];
+        if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
+        }
+    }
+}
+</script>
+
+<script type="text/javascript">
+
+    function GetChat(UserName, UserId) {
+        var CurrentUserId = $('#CurrentUserId').val();
+        var CurrentUserName = $('#CurrentUserName').val();
+
+        var ActiveUserName = UserName;
+        var ActiveUserId = UserId;
+
+        if ($('#SelectedUserId').val() != ActiveUserId) {
+
+            $.ajax({
+                type: "GET",
+                url: "/Chat/?handler=GetConversation",
+                data: { From: ActiveUserId },
+                contentType: "application/json",
+                dataType: "json",
+
+                success: function (data) {  //  }).done(function (data, xhr, response) {
+                    //alert("GetConvo");
+                    debugger;
+                    //alert(response);
+                    console.log(data)
+                    if (data != null) {
+                        $('#discussionDiv').html("");
+                        $('#SelectedUserId').val(ActiveUserId);
+                        $('#SelectedUserName').val(ActiveUserName);
+
+                       // document.getElementById("GetContactDeails").style.display = "block";
+
+                        $('#message').focus();
+                        $('#alertDiv').css("display", "");
+                        $('#alertDiv').html("In chat with " + ActiveUserName);
+                        $('#discussionDiv').css("height", "302px");
+                        $('#discussionDiv').css("margin-top", "-17px");
+                        if (data.length > 0) {
+                            for (var i = 0; i < data.length; i++) {
+                                var da = data[i].date;
+                               // da = da.replace(/[^0-9 +]/g, '');
+                                var d = new Date(parseInt(da));
+
+                                d + '';                  // "Sun Dec 08 2013 18:55:38 GMT+0100"
+                                d.toLocaleString()
+                                var m = data[i].from;
+                                if (data[i].from == CurrentUserId) {
+                                    debugger;
+                                    var ImageName = data[i].image;
+                                    var VideoName = data[i].video;
+                                    var FileName = data[i].file;
+                                    var FromImage = data[i].fromImage;
+                                    //alert(FromImage);
+                                    //alert(data[i].FromImage);
+                                    if (data[i].text != "" && (ImageName == null && VideoName == null && FileName == null)) {
+                                        $('#discussionDiv').append('<li class="left clearfix"> <li class="left clearfix"><span class="chat-img1 pull-left"><img src="/Uploads/ProfileImage/' + data[i].fromImage + '" class="img-circle"/></span><div class="chat-body1 clearfix"><p>' + data[i].text + ' </p><div class="chat_time pull-right">' + d.toLocaleString() + '</div></div> </li>');
+
+                                    }
+                                    else if (data[i].text != "" && (ImageName != null || VideoName != null || FileName != null)) {
+                                        if (VideoName == null && FileName == null && ImageName != null) {
+                                            $('#discussionDiv').append('<li class="left clearfix"> <li class="left clearfix"><span class="chat-img1 pull-right"><img src="/Uploads/ProfileImage/' + data[i].fromImage + '" class="img-circle"/></span><div class="chat-body1 clearfix">' + data[i].text + ' </div> <div style="padding-left:19px"><img src="/Uploads/ChatImages/' + ImageName + '" class="img-thumbnail" style="padding:0px;width:300px; /> </div> <div class="chat_time pull-right">' + d.toLocaleString() + '</div></div> </li>');
+                                        }
+                                    }
+                                    else if (data[i].text == "" && (ImageName != null || VideoName != null || FileName != null)) {
+                                        if (VideoName == null && FileName == null && ImageName != null) {
+                                            $('#discussionDiv').append('<li class="left clearfix"> <li class="left clearfix"><span class="chat-img1 pull-right"><img src="/Uploads/ProfileImage/' + data[i].fromImage + '" class="img-circle"/></span><div style="padding-left:19px"><img src="/Uploads/ChatImages/' + ImageName + '" class="img-thumbnail" style="padding:0px;width:300px;" /> </div> <div class="chat_time pull-right">' + d.toLocaleString() + '</div></div> </li>');
+                                        }
+                                    }
+                                }
+                                else {
+                                    var ImageName = data[i].image;
+
+                                    if (data[i].text != "" && (ImageName == null && VideoName == null && FileName == null)) {
+                                        $('#discussionDiv').append('<li class="left clearfix admin_chat"> <li class="left clearfix"><span class="chat-img1 pull-right"><img src="/Uploads/ProfileImage/' + data[i].fromImage + '" class="img-circle"/></span><div class="chat-body1 clearfix"><p>' + data[i].text + ' </p><div class="chat_time pull-left">' + d.toLocaleString() + '</div></div> </li>');
+                                    }
+                                    else if (data[i].text != "" && (ImageName != null || VideoName != null || FileName != null)) {
+                                        if (VideoName == null && FileName == null && ImageName != null) {
+                                            $('#discussionDiv').append('<li class="left clearfix admin_chat"> <li class="left clearfix"><span class="chat-img1 pull-right"><img src="/Uploads/ProfileImage/' + data[i].fromImage + '" class="img-circle"/></span><div class="chat-body1 clearfix">' + data[i].text + ' </div> <div style="padding-left:19px"><img src="/Uploads/ChatImages/' + ImageName + '" class="img-thumbnail" style="padding:0px;" /> </div> <div class="chat_time pull-left">' + d.toLocaleString() + '</div></div> </li>');
+                                        }
+                                    }
+                                    else if (data[i].text == "" && (ImageName != null || VideoName != null || FileName != null)) {
+                                        if (VideoName == null && FileName == null && ImageName != null) {
+                                            $('#discussionDiv').append('<li class="left clearfix admin_chat"> <li class="left clearfix"><span class="chat-img1 pull-right"><img src="/Uploads/ProfileImage/' + data[i].fromImage + '" class="img-circle"/></span><div style="padding-left:19px"><img src="/Uploads/ChatImages/' + ImageName + '" class="img-thumbnail" style="padding:0px;" /> </div> <div class="chat_time pull-left">' + d.toLocaleString() + '</div></div> </li>');
+                                        }
+                                    }
+
+                                }
+                            }
+                            //$('#discussionDiv').animate({ scrollTop: $('#discussionDiv').prop("scrollHeight") }, 500);
+                            $(".chat_area").animate({ scrollTop: $('ul#discussionDiv li:last').offset().top + 30 });
+                            //$("#discussionDiv").scrollTop($("#discussionDiv")[0].scrollHeight);
+                        }
+
+                    }
+                },
+                failure: function (response) {   // }).error(function (data, xhr, response) {
+                    $('#alertDiv').css("display", "");
+                    $('#alertDiv').removeClass("alert-success");
+                    $('#alertDiv').addClass("alert-danger");
+                    $('#alertDiv').html("An error has occured while retreiving conversation.");
+                    $('#SelectedUserId').val('');
+                    $('#SelectedUserName').val('');
+                }
+                });
+
+          
+        }
+    }
+    $(document).ready(function () {
+      
+        var User = $('#LatestChatUserId').val();
+        var Name = $('#LatestChatUserName').val();
+
+        if (User != undefined || Name != undefined) {
+
+            $('#ActiveUserId').val(User);
+            $('#ActiveUserName').val(Name);
+
+            GetChat(Name, User);
+
+            $('#SelectedUserId').val(User);
+            $('#LatestChatUserId').val("");
+            $('#LatestChatUserName').val("");
+        }
+        $('#AllUserDiv').scrollTop(0);
+        $('#UserDiv').on('click', 'li', function () {
+            var ActiveUserName = $(this).children('#ActiveUserName').text();
+            var ActiveUserId = $(this).children('#ActiveUserId').text();
+            if (ActiveUserId == "") {
+                ActiveUserName = $('#ActiveUserName').text();
+                ActiveUserId = $('#ActiveUserId').text();
+            }
+            //var ActiveUserName = $('#ActiveUserName').text();
+            //var ActiveUserId = $('#ActiveUserId').text();
+            GetChat(ActiveUserName, ActiveUserId);
+        })
+    })
+    $('#btn-chat').click(function () {
+        var Message = $.trim($("#btn-input").val());
+        $('#btn-input').val('').focus();
+        var ToId = $('#SelectedUserId').val();
+        var ToName = $('#SelectedUserName').val();
+        var FileName = $('input[name=ChatFileName]').val();
+        var userPic = $('#profilepici').val();
+
+
+        var CurrentUserName = $('#CurrentUserName').val();
+        //var fileUpload = null;
+        //if (FileName == "Photo") {
+        //    fileUpload = $("input[name=ImageFile]").get(0);
+        //} else if (FileName == "Video") {
+        //    fileUpload = $("input[name=VideoFile]").get(0);
+        //} else if (FileName == "File") {
+        //    fileUpload = $("input[name=DocumentFile]").get(0);
+        //}
+        //var files = null;
+        //if (fileUpload) {
+        //    files = fileUpload.files;
+        //}
+
+        //var FilePath = null;
+        var fileData = new FormData();
+
+
+        //if (files) {
+        //    if (files.length > 0) {
+        //        FilePath = files[0].name;
+        //    }
+        //    for (var i = 0; i < files.length; i++) {
+        //        fileData.append(files[i].name, files[i]);
+        //    }
+        //}
+
+        //if (!files && Message.length < 1) {
+        if (Message.length < 1) {
+            $('#NotSendError').css("display", "");
+            $('#NotSendError').html("Type some text to send.");
+            $('#NotSendError').delay(3000).fadeOut();
+
+            return;
+        }
+
+        fileData.append('btn-input', Message);
+        fileData.append('To', ToId);
+        //fileData.append('FileType', FileName);
+        debugger;
+
+        $('#btn-input').value = "";
+        $('#btn-input').blur();
+        $('#ChatForm').trigger("reset");
+
+        $('#ImgpreviewLi').css("display", "none");
+        $('#VideopreviewLi').css("display", "none");
+        $('#FilepreviewLi').css("display", "none");
+
+        if (ToId.length < 1 || ToName.length < 1) {
+            $('#NotSendError').css("display", "");
+            $('#NotSendError').html("Please select user to start chat.");
+            $('#NotSendError').delay(3000).fadeOut();
+            return;
+        }
+
+        else {
+            $('#btn-input').removeClass('inputEror');
+            $.ajax({
+                url: '/Chat/?handler=SendMessage',
+                type: "Post",
+               // data: { text: Message, To: ToId },
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader("XSRF-TOKEN",
+                        $('input:hidden[name="__RequestVerificationToken"]').val());
+                },
+               
+                data: JSON.stringify({
+                    text: Message,
+                    To: ToId
+                }),
+                contentType: "application/json",
+                dataType: "json",
+
+                success: function (AuditTrail, xhr, response, results) {
+                    debugger;
+                    if (response.status == "200") {
+                        var d = new Date();
+                        d + '';                  // "Sun Dec 08 2013 18:55:38 GMT+0100"
+                        d.toLocaleString();
+
+                        //if (FilePath == undefined && Message.length > 0) {
+                        //    //alert("undefinded");
+                        //    //$('#discussionDiv').append('<div class="row"> <div class="col-sm-6  "> <div class="wordWrap triangle-border-left left" >' + Message + ' </div> <div style="padding-left:19px"> <p  style="font-size: x-small;">' + d.toLocaleString() + '</p> </div></div> </div>');
+                        //    $('#discussionDiv').append('<li class="left clearfix"> <li class="left clearfix"><span class="chat-img1 pull-left"><img src="/Uploads/ProfileImage/' + userPic + '" class="img-circle"/></span><div class="chat-body1 clearfix"><p>' + Message + ' </p><div class="chat_time pull-right">' + d.toLocaleString() + '</div></div> </li>');
+
+                        //}
+                        //else if (FilePath != undefined && Message.length > 0) {
+                        //    if (FileName == "Photo") {
+                        //        //$('#discussionDiv').append('<div class="row"> <div class="col-sm-6  "> <div class="wordWrap triangle-border-left left" >' + Message + ' </div> <div style="padding-left:19px"><img src="/SendFiles/' + FilePath + '" class="img-thumbnail" style="padding:0px;" /> </div> <div style="padding-left:19px"> <p  style="font-size: x-small;">' + d.toLocaleString() + '</p> </div></div> </div>');
+                        //        $('#discussionDiv').append('<li class="left clearfix"> <li class="left clearfix"><span class="chat-img1 pull-left"><img src="/Uploads/ProfileImage/' + userPic + '" class="img-circle"/></span><div class="chat-body1 clearfix">' + Message + ' </div> <div style="padding-left:19px"><img src="/Uploads/ChatImages/' + FilePath + '" class="img-thumbnail" style="padding:0px;width:300px;" /> </div> <div class="chat_time pull-right">' + d.toLocaleString() + '</div></div> </li>');
+                        //    }
+                        //}
+                        //else if (FilePath != undefined && Message.length < 1) {
+                        //    if (FileName == "Photo") {
+                        //        //$('#discussionDiv').append('<div class="row"> <div class="col-sm-6  "> <div style="padding-left:19px"><img src="/SendFiles/' + FilePath + '" class="img-thumbnail" style="padding:0px;" /> </div> <div style="padding-left:19px"> <p  style="font-size: x-small;">' + d.toLocaleString() + '</p> </div></div> </div>');
+                        //        $('#discussionDiv').append('<li class="left clearfix"> <li class="left clearfix"><span class="chat-img1 pull-left"><img src="/Uploads/ProfileImage/' + userPic + '" class="img-circle"/></span><div style="padding-left:19px"><img src="/Uploads/ChatImages/' + FilePath + '" class="img-thumbnail" style="padding:0px;width:300px;" /> </div> <div class="chat_time pull-right">' + d.toLocaleString() + '</div></div> </li>');
+                        //    }
+                        //}
+
+                        // $(".chat_area").animate({ scrollTop: $('ul#discussionDiv li:last').offset().top + 30 });
+
+                        //  $.each(AuditTrail, function (i, item) {
+                        // $('.chat_area').scrollToBottom();
+                       // $chatLoaderDiv.append('<div class="chatbox__body__message chatbox__body__message--left"><div class="chatbox_timing"><ul><li><a href="#"><i class="fa fa-calendar"></i>' + AuditTrail.date + '</a></li></ul></div><img src="https://www.gstatic.com/webp/gallery/2.jpg" alt="Picture"><div class="clearfix"></div><div class="ul_section_full"><ul class="ul_msg"><li><strong>Person Name</strong></li><li>' + AuditTrail.text + ' </li></ul><div class="clearfix"></div><ul class="ul_msg2"><li></li></ul></div></div>');
+                        $('#discussionDiv').append('<li class="left clearfix"> <li class="left clearfix"><span class="chat-img1 pull-left"><img src="/Uploads/ProfileImage/' + AuditTrail.image + '" class="img-circle"/></span><div class="chat-body1 clearfix"><p>' + AuditTrail.text + ' </p><div class="chat_time pull-right">' + d.toLocaleString() + '</div></div> </li>');
+                        $(".chat_area").animate({ scrollTop: $('.chat_area').scrollTop() + $('.chat_area').height() });
+                        //get container element and scroll down
+                        var container = document.getElementById("discussionDiv");
+                        container.scrollTop = container.scrollHeight;
+
+                    }
+                },
+                failure: function (response) {
+                    alert(response);
+                    $('#NotSendError').css("display", "");
+                    $('#NotSendError').text("Message sending fail !");
+                    $('#NotSendError').delay(4000).fadeOut();
+                },
+
+            });
+
+        }
+
+    });
+
+
+</script>
+
